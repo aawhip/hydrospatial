@@ -1,8 +1,11 @@
 Package: hydrospatial
-Title: What the Package Does (one line, title case)
+Title: Characterize Floodplain Inundation Patterns and Apply Habitat Suitability Criteria in Space and Time
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: person("Alison", "Whipple", 
+  email = "alison.whipple@gmail.com", 
+  role = c("aut", "cre"), 
+  comment=c(ORCID="0000-0002-2468-5556"))
+Description: An R-package for spatial and temporal analysis of floodplain inundation characteristics and application of habitat suitability criteria using raster data representing depth and velocity at known flows. This pa
 Depends: R (>= 3.5.0)
 License: What license is it under?
 Encoding: UTF-8

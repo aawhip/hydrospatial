@@ -11,8 +11,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Setting up Git Repo and R package environment
 
-Discussion on how to do this: <https://community.rstudio.com/t/procedure-to-create-a-project-for-a-package-destined-for-github/2054>
+Discussion on how to do this: <https://community.rstudio.com/t/procedure-to-create-a-project-for-a-package-destined-for-github/2054>  
+Used these steps for The “GitHub first” approach: 
 
+* Create repo on GitHub (YES to Initialize this repository with a README)  
+* Capture URL from the big green “Clone or download” button; new RStudio Project from that
+* devtools::setup()
+* Quit and Relaunch RStudio in this Project.
 
 
 
