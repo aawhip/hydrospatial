@@ -1,12 +1,25 @@
 Package: hydrospatial
-Title: Characterize Floodplain Inundation Patterns and Apply Habitat Suitability Criteria in Space and Time
+Title: Spatiotemporal Characterization of Floodplain Inundation and Habitat
 Version: 0.0.0.9000
-Authors@R: person("Alison", "Whipple", 
-  email = "alison.whipple@gmail.com", 
-  role = c("aut", "cre"), 
-  comment=c(ORCID="0000-0002-2468-5556"))
-Description: An R-package for spatial and temporal analysis of floodplain inundation characteristics and application of habitat suitability criteria using raster data representing depth and velocity at known flows. This pa
+Authors@R: person("Alison", "Whipple",
+    email = "alison.whipple@gmail.com",
+    role = c("aut", "cre"),
+    comment=c(ORCID="0000-0002-2468-5556"))
+Description: An R-package for spatial and temporal analysis of floodplain 
+    inundation characteristics and application of habitat suitability criteria.
+    It takes as input raster data of depth and velocity (e.g., from 2D 
+    hydrodynamic modeling) at known flows and a corresponding daily flow time 
+    series. Daily rasters of estimated depth and velocity are generated from 
+    inputs using spatially resolved piece-wise linear interpolation. 
+    Hydrospatial analysis functions calculate a range of physical metrics using
+    the raster time series. Habitat suitability criteria applied to the 
+    computed physical metrics estimate spatially resolved daily cell suitability,
+    allowing for computation of daily weighted usable area. Statistical and 
+    graphical summary of these metrics in space and time.
 Depends: R (>= 3.5.0)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.1.1
+Imports: 
+    raster (>= 2.8-4)
