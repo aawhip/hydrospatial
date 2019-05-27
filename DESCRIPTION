@@ -23,3 +23,8 @@ LazyData: true
 RoxygenNote: 6.1.1
 Imports: 
     raster (>= 2.8-4)
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
