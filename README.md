@@ -3,7 +3,7 @@ An R-package for spatial and temporal analysis of floodplain inundation characte
 
 ## Plan for package structure
 ### Organization
-Don't put all functions in one file or each funciton in its own separate file
+Don't put all functions in one file or each function in its own separate file
 
 ### Conventions
 On function names/filenames, have generic classes (lowercase) in front (e.g., "read", "calc","plot"), then underscore, then shortname (lowercase w caps to distinguish between words), see USGS packages for this convention

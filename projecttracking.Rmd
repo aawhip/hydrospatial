@@ -19,8 +19,55 @@ Used these steps for The “GitHub first” approach:
 * devtools::setup()
 * Quit and Relaunch RStudio in this Project.
 
+## Basic workflow
 
+### Add functions to .R files
 
+1. Write the function and load it with devtools::load_all() (Ctrl-Shift-L) and then see if it works
+2. Document functions with roxygen syntax 
+
+* Lines starting with #'
+* Title is first line
+* Description is two lines down
+* Details follow (optional)
+* @param sets the parameters (e.g., "@param x A number.")
+* @import or @importFrom for all functions or selected functions in a package, respectively
+* @export to say whether its exported from the package to be used by others
+* @return to describe what is returned (e.g., "The sum of \\code{x} and \\code{y}")
+* @examples to provide some examples
+
+3. Update documentation: devtools::document() (or Ctrl-Shift-D) and preview with ?
+
+### Update DESCRIPTION
+
+If functions depend on packages, add them in DESCRIPTION as "depends", "imports", or "suggests" - only use "depends" for packages this is totally dependent upon (i.e., raster package)
+
+## Loading package and checking
+
+Installing the package: Load the devtools library, then in the Build tab, click Install and Restart (Ctrl-Shift-B)
+
+Checking the package: run devtools::check() (Ctrl-Shift-E)
+
+Note that this does not build vignettes
+
+## Testing
+
+1. Modify code or tests
+2. Test package with devtools::test() (Ctrl-Shift-T)
+
+See Wickham Testing chapter
+
+## Package documentation
+
+### Update the package-hydrospatial.R file
+
+As decisions are made about the organization of the package, update this file
+
+### Update the intro-vignette
+
+See Wickham text for this
+
+## Other
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 

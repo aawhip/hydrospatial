@@ -4,6 +4,8 @@
 #' @param love Do you love cats? Defaults to TRUE.
 #' @keywords cats
 #' @export
+#' @importFrom raster raster
+#' @importClassesFrom raster Extent BasicRaster Raster RasterLayer RasterBrick RasterStack RasterStackBrick
 #' @examples
 #' cat_function()
 

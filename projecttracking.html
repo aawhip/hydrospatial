@@ -140,6 +140,60 @@ Used these steps for The “GitHub first” approach:</p>
 <li>devtools::setup()</li>
 <li>Quit and Relaunch RStudio in this Project.</li>
 </ul>
+</div>
+<div id="basic-workflow" class="section level2">
+<h2>Basic workflow</h2>
+<div id="add-functions-to-.r-files" class="section level3">
+<h3>Add functions to .R files</h3>
+<ol style="list-style-type: decimal">
+<li>Write the function and load it with devtools::load_all() (Ctrl-Shift-L) and then see if it works</li>
+<li>Document functions with roxygen syntax</li>
+</ol>
+<ul>
+<li>Lines starting with #’</li>
+<li>Title is first line</li>
+<li>Description is two lines down</li>
+<li>Details follow (optional)</li>
+<li><span class="citation">@param</span> sets the parameters (e.g., “<span class="citation">@param</span> x A number.”)</li>
+<li><span class="citation">@return</span> to describe what is returned (e.g., “The sum of \code{x} and \code{y}”)</li>
+<li><span class="citation">@examples</span> to provide some examples</li>
+</ul>
+<p>Update documentation: devtools::document() (or Ctrl-Shift-D) and preview with ?</p>
+</div>
+<div id="update-description" class="section level3">
+<h3>Update DESCRIPTION</h3>
+<p>If functions depend on packages, add them in DESCRIPTION as “depends”, “imports”, or “suggests” - only use “depends” for packages this is totally dependent upon (i.e., raster package)</p>
+</div>
+</div>
+<div id="installing-from-local-package-to-check" class="section level2">
+<h2>Installing from local package to check</h2>
+<ol style="list-style-type: decimal">
+<li>Load the devtools library</li>
+<li>Then in the Build tab, click Install and Restart (Ctrl-Shift-B)</li>
+</ol>
+<p>Note that this does not build vignettes</p>
+</div>
+<div id="testing" class="section level2">
+<h2>Testing</h2>
+<ol style="list-style-type: decimal">
+<li>Modify code or tests</li>
+<li>Test package with devtools::test() (Ctrl-Shift-T)</li>
+</ol>
+<p>See Wickham Testing chapter</p>
+</div>
+<div id="package-documentation" class="section level2">
+<h2>Package documentation</h2>
+<div id="update-the-package-hydrospatial.r-file" class="section level3">
+<h3>Update the package-hydrospatial.R file</h3>
+<p>As decisions are made about the organization of the package, update this file</p>
+</div>
+<div id="update-the-intro-vignette" class="section level3">
+<h3>Update the intro-vignette</h3>
+<p>See Wickham text for this</p>
+</div>
+</div>
+<div id="other" class="section level2">
+<h2>Other</h2>
 <p>When you click the <strong>Knit</strong> button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
 <pre class="r"><code>summary(cars)</code></pre>
 <pre><code>##      speed           dist       

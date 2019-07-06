@@ -7,9 +7,11 @@
 \title{hydrospatial: A package for characterizing floodplain inundation and habitat
 in space and time}
 \description{
-An R-package for spatial and temporal analysis of floodplain inundation characteristics and application of habitat suitability criteria.
-It takes as input raster data of depth and velocity (e.g., from 2D hydrodynamic modeling) at known flows and a corresponding daily flow time
-series. Daily rasters of estimated depth and velocity are generated from
+An R-package for spatial and temporal analysis of floodplain inundation
+characteristics and application of habitat suitability criteria.
+It takes as input raster data of depth and velocity (e.g., from 2D hydrodynamic
+modeling) at known flows and a corresponding daily flow time series.
+Daily rasters of estimated depth and velocity are generated from
 inputs using spatially resolved piece-wise linear interpolation.
 Hydrospatial analysis functions calculate a range of physical metrics using
 the raster time series. Habitat suitability criteria applied to the
