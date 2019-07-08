@@ -19,11 +19,11 @@ containing a 'flw' numeric column and a 'limb' attributing flows as either risin
 ('r') or falling ('f')}
 
 \item{flws_pred}{Data frame of flows for which to create interpolated rasters,
-composed of a date ('dt') column, flows ('flw') column, a limb ('limb') column assigning the flow
-as either on the rising ('r') or falling ('f') limb of the hydrograph, and a
-high flow ('hflw') column representing the recent peak flow to which ponded
-or disconnected areas correspond (such as the highest flow within the last
-seven days).}
+composed of a date ('dt') column, flows ('flw') column, a limb ('limb') column
+assigning the flow as either on the rising ('r') or falling ('f') limb of the
+hydrograph, and a high flow ('hflw') column representing the recent peak flow to
+which ponded or disconnected areas correspond (such as the highest flow within the
+last seven days).}
 
 \item{ponding}{Set ponding to TRUE or FALSE. Default value is FALSE.}
 

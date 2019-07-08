@@ -25,11 +25,11 @@
 #' containing a 'flw' numeric column and a 'limb' attributing flows as either rising
 #' ('r') or falling ('f')
 #' @param flws_pred Data frame of flows for which to create interpolated rasters,
-#' composed of a date ('dt') column, flows ('flw') column, a limb ('limb') column assigning the flow
-#' as either on the rising ('r') or falling ('f') limb of the hydrograph, and a
-#' high flow ('hflw') column representing the recent peak flow to which ponded
-#' or disconnected areas correspond (such as the highest flow within the last
-#' seven days).
+#' composed of a date ('dt') column, flows ('flw') column, a limb ('limb') column
+#' assigning the flow as either on the rising ('r') or falling ('f') limb of the
+#' hydrograph, and a high flow ('hflw') column representing the recent peak flow to
+#' which ponded or disconnected areas correspond (such as the highest flow within the
+#' last seven days).
 #' @param ponding Set ponding to TRUE or FALSE. Default value is FALSE.
 #' @param sc Character string to attach to the output raster filenames (such as the
 #' name of the model scenario)

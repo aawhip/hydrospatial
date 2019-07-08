@@ -14,7 +14,7 @@
 #' graphical summary of these metrics in space and time.
 #'
 #' The hydrospatial package provides four categories of functions:
-#' predrast, hsa, utility, and vis
+#' predrast, hsa, utils, and vis
 #'
 #' @section predictrast functions:
 #' The predictrast functions
