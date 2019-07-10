@@ -15,7 +15,7 @@
 #' @export
 #' @return Writes the duration weight rasters to file in the outdir.
 
-hsa_durationwgt <- function(rs_dayinun, durshrt, durlng, durshrt_wgt, durlng_wgt, durtoolng_wgt, outdir) {
+hsa_durationwgt <- function(rs_dayinun, durshrt, durlng, durshrt_wgt, durlng_wgt, durtoolng_wgt, wy, outdir) {
 
   # Make directory if necessary
   if (!dir.exists(paste0(outdir,"rshab"))) {dir.create(paste0(outdir,"rshab"))}

@@ -5,7 +5,7 @@
 \title{Function for hydrospatial application of inundation duration weight}
 \usage{
 hsa_durationwgt(rs_dayinun, durshrt, durlng, durshrt_wgt, durlng_wgt,
-  durtoolng_wgt, outdir)
+  durtoolng_wgt, wy, outdir)
 }
 \arguments{
 \item{rs_dayinun}{Raster stack or brick of inundation day as from 'hsa_duration'}

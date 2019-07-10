@@ -4,7 +4,7 @@
 \alias{hsa_timing}
 \title{Function for hydrospatial application of seasonal timing window}
 \usage{
-hsa_timing(rs_dayinunwgt, mo_start, mo_end, fdf, outdir)
+hsa_timing(rs_dayinunwgt, mo_start, mo_end, fdf, wy, cres, aconv, outdir)
 }
 \arguments{
 \item{rs_dayinunwgt}{Raster stack or brick of inundation day as from 'hsa_duration'}
@@ -18,8 +18,9 @@ hsa_timing(rs_dayinunwgt, mo_start, mo_end, fdf, outdir)
 \item{outdir}{Directory for writing rasters to file}
 }
 \value{
-Flood events data frame for water year with duration metrics filled in.
-Writes the duration rasters to file in the outdir.
+Flows data frame for water year with suitable habitat area (wua, weighted
+usable area) and hydraulic habitat suitability (hhs) filled in. Writes the suitability
+rasters with the final timing weighting to file in the outdir.
 }
 \description{
 This function accepts

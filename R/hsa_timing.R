@@ -11,11 +11,12 @@
 #' @param fdf Flows data frame for water year in format of 'utils_hsaflws' function
 #' @param outdir Directory for writing rasters to file
 #' @export
-#' @return Flood events data frame for water year with duration metrics filled in.
-#' Writes the duration rasters to file in the outdir.
+#' @return Flows data frame for water year with suitable habitat area (wua, weighted
+#' usable area) and hydraulic habitat suitability (hhs) filled in. Writes the suitability
+#' rasters with the final timing weighting to file in the outdir.
 
-hsa_timing <- function(rs_dayinunwgt, mo_start, mo_end, fdf, outdir) {
-  # Change values to zero that are earlier than Nov 1 and later than June 30 - I should also be able to wrap this into a previous operation to not create separate rasters
+hsa_timing <- function(rs_dayinunwgt, mo_start, mo_end, fdf, wy, cres, aconv, outdir) {
+  # Change values to zero that are within the timing window
     mnths <- month(fdf$dt)
 
   fun_time <- function(x) {
@@ -32,6 +33,14 @@ hsa_timing <- function(rs_dayinunwgt, mo_start, mo_end, fdf, outdir) {
     rs_timewgt <- clusterR(rs_dayinunwgt, calc, args=list(fun=fun_time))
   endCluster()
 
-  writeRaster(rs_timewgt, filename=paste0(outdir,"rshab/rstimewgt_",wy,".grd"), bylayer=T, suffix='numbers', overwrite=T)
+  # Compute WUA at each timestep
+  fdf$salwua <- cellStats(rs_timewgt, sum)*cres*aconv
+  fdf$salwua <- fdf$salwua*fdf$areaminreq
+  # Compute HHS at each timestep - add to flws data frame
+  fdf$salhhs <- fdf$salwua/fdf$tinun_a
+
+  writeRaster(rs_timewgt, filename=paste0(outdir,"rshab/rshabsuit_",wy,".grd"), bylayer=T, suffix='numbers', overwrite=T)
+
+  return(fdf)
 
 }
