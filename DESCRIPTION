@@ -18,7 +18,9 @@ Description: An R-package for spatial and temporal analysis of floodplain
     graphical summary of these metrics in space and time.
 Depends: 
     R (>= 3.5.0),
-    raster (>= 2.8-4)
+    raster (>= 2.8-4),
+    igraph (>= 1.2.2),
+    doParallel (>= 1.0.14)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
@@ -29,5 +31,6 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown,
+    igraph,
     testthat
 VignetteBuilder: knitr

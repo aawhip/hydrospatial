@@ -11,7 +11,7 @@
 
 utils_hsaflwsevts <- function(d, sc){
 
-    d$dt <- mdy(d$dt)
+    d$dt <- ymd(d$dt)
     d$sc <- sc
     d$jd <- yday(d$dt) # jd=Julian day
     d$limb <- as.character(d$limb)
@@ -28,9 +28,9 @@ utils_hsaflwsevts <- function(d, sc){
     row.names(flws_e) <- unique(flws_e$event_no)
 
   # Add empty columns
-    flws_e$dur.max <- NA; flws_e$dur.m <- NA; flws_e$dur.sd <- NA; flws_e$dur.cv <- NA
-    flws_e$cdur.m <- NA; flws_e$cdur.sd <- NA; flws_e$cdur.cv <- NA
-    flws_e$dcdur.m <- NA; flws_e$dcdur.sd <- NA; flws_e$dcdur.cv <- NA
+    flws_e$dur_max <- NA; flws_e$dur_m <- NA; flws_e$dur_sd <- NA; flws_e$dur_cv <- NA
+    flws_e$cdur_m <- NA; flws_e$cdur_sd <- NA; flws_e$cdur_cv <- NA
+    flws_e$dcdur_m <- NA; flws_e$dcdur_sd <- NA; flws_e$dcdur_cv <- NA
 
   return(flws_e)
 

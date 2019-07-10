@@ -18,7 +18,8 @@ utils_flowstopredict(d, d_flds, thr, postfld = 7, outdir)
 \item{outdir}{Directory for writing flows to file}
 }
 \value{
-Flows data frame as input for raster prediction
+Flows data frame as input for raster prediction, written to
+file as "flows_topred_full.csv"
 }
 \description{
 This function identifies flow days for hydrospatial analysis,

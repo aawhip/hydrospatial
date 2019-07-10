@@ -14,7 +14,8 @@
 #' @param outdir Directory for writing flows to file
 #' @importFrom dplyr select left_join
 #' @export
-#' @return Flows data frame as input for raster prediction
+#' @return Flows data frame as input for raster prediction, written to
+#' file as "flows_topred_full.csv"
 
 utils_flowstopredict <- function(d, d_flds, thr, postfld = 7, outdir){
 

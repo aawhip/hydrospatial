@@ -12,14 +12,14 @@
 
 utils_hsaflws <- function(d, sc){
 
-  d$dt <- mdy(d$dt)
+  d$dt <- ymd(d$dt)
   d$sc <- sc
   d$jd <- yday(d$dt) # jd=Julian day
   d$limb <- as.character(d$limb)
 
   # Add empty columns
-  d$tinun.a <- NA; d$inun.a <- NA; d$pinun.a <- NA
-  d$conn.a <- NA; d$dconn.a <- NA
+  d$tinun_a <- NA; d$inun_a <- NA; d$pinun_a <- NA
+  d$conn_a <- NA; d$dconn_a <- NA
   d$areaminreq <- NA
   d$salwua <- NA; d$salhhs <- NA
 

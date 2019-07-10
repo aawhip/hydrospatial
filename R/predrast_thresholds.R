@@ -4,7 +4,7 @@
 #' flow before cells inundate.
 #'
 #' @details This function uses the raster package 'calc' function, where the
-#' function applied accepts vectors of cell values from a raster stack and uses
+#' function applied accepts vectors of cell values of depth from a raster stack and uses
 #' the input 'flws' vector that corresponds to each of the cell values. The function
 #' applied within 'calc' returns NA if the cell vector is all NA or 0 (dry cell across
 #' the raster stack). If there are no cells that are NA or 0 (cells is always wet across
@@ -15,11 +15,13 @@
 #' flow threshold assigned to the cell will be 100 cfs (the last flow provided where the
 #' cell is dry).
 #'
-#' @param rs_mod Raster stack or brick with each layer corresponding to the flws vector
+#' @param rs_mod Raster stack or brick of depth with each layer corresponding to the flws
+#' vector
 #' @param flws Vector of flows corresponding to the raster stack or brick
 #' @export
 #' @importFrom raster calc
-#' @importClassesFrom raster Extent BasicRaster Raster RasterLayer RasterBrick RasterStack RasterStackBrick
+#' @importClassesFrom raster Extent BasicRaster Raster RasterLayer RasterBrick RasterStack
+#' RasterStackBrick
 #' @return A single raster layer of inundation threshold flows
 
 predrast_thresholds <- function(rs_mod, flws){
