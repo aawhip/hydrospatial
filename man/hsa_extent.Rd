@@ -2,7 +2,7 @@
 % Please edit documentation in R/hsa_extent.R
 \name{hsa_extent}
 \alias{hsa_extent}
-\title{Function for hydrospatial analysis of inundation extent}
+\title{Function for hydrospatial analysis of inundation extent with depth and velocity criteria}
 \usage{
 hsa_extent(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, outdir)
 }
@@ -13,6 +13,12 @@ hsa_extent(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, outdir)
 
 \item{fdf}{Flows data frame for water year in format of 'utils_hsaflws' function}
 
+\item{dmin}{Minimum depth threshold for raster calculation}
+
+\item{dmax}{Maximum depth threshold for raster calculation}
+
+\item{vmax}{Maximum velocity threshold for raster calculation}
+
 \item{wy}{Water year to add to filenames}
 
 \item{cres}{Resolution of cell (in units squared)}
@@ -20,12 +26,6 @@ hsa_extent(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, outdir)
 \item{aconv}{Conversion factor for calculating area}
 
 \item{outdir}{Directory for writing rasters to file}
-
-\item{thr_d_min}{Minimum depth threshold for raster calculation}
-
-\item{thr_d_max}{Maximum depth threshold for raster calculation}
-
-\item{thr_v_max}{Maximum velocity threshold for raster calculation}
 }
 \value{
 Flows data frame with inundated area metrics filled in.

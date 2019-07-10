@@ -31,9 +31,9 @@ hsa_freq <- function(rs_i0, fdf, wy, outdir) {
     beginCluster(ncores)
       cl <- getCluster()
       clusterExport(cl,"fdf", envir = environment())
-      rs.noinun <- clusterR(rs_i0, calc, args=list(fun=fun_noinun))
+      rs_noinun <- clusterR(rs_i0, calc, args=list(fun=fun_noinun))
     endCluster()
 
-    writeRaster(rs.noinun, filename=paste0(outdir,"rsnoinun/rsnoinun_",wy,".grd"), bylayer=TRUE, suffix='numbers', overwrite=TRUE)
+    writeRaster(rs_noinun, filename=paste0(outdir,"rsnoinun/rsnoinun_",wy,".grd"), bylayer=TRUE, suffix='numbers', overwrite=TRUE)
 
 }

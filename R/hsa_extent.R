@@ -1,4 +1,4 @@
-#' Function for hydrospatial analysis of inundation extent
+#' Function for hydrospatial analysis of inundation extent with depth and velocity criteria
 #'
 #' This function accepts depth and velocity rasters and associated flows data frame
 #' for a given water year and calculates three sets of boolean rasters, indicating
@@ -11,9 +11,9 @@
 #' @param rs_d Raster stack or brick of depth
 #' @param rs_v Raster stack or brick of velocity
 #' @param fdf Flows data frame for water year in format of 'utils_hsaflws' function
-#' @param thr_d_min Minimum depth threshold for raster calculation
-#' @param thr_d_max Maximum depth threshold for raster calculation
-#' @param thr_v_max Maximum velocity threshold for raster calculation
+#' @param dmin Minimum depth threshold for raster calculation
+#' @param dmax Maximum depth threshold for raster calculation
+#' @param vmax Maximum velocity threshold for raster calculation
 #' @param wy Water year to add to filenames
 #' @param cres Resolution of cell (in units squared)
 #' @param aconv Conversion factor for calculating area

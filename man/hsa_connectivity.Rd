@@ -16,7 +16,8 @@ hsa_connectivity(rs_ti0, fdf, wy, cres, aconv, connpoly, outdir)
 \item{flws}{Flows data frame for water year in format of 'utils_hsaflws' function}
 }
 \value{
-Writes rasters with groupings of inundation to file in the outdir.
+Flows data frame with metrics filled in. Writes rasters with groupings of
+inundation to file in the outdir.
 }
 \description{
 This function accepts

@@ -4,13 +4,21 @@
 \alias{hsa_duration}
 \title{Function for hydrospatial analysis of inundation duration}
 \usage{
-hsa_duration(rs_i, fdf_e, igrp, wy, outdir)
+hsa_duration(rs_i, rs_c, rs_dc, rs_noinun, fdf_e, fdf, igrp, wy, outdir)
 }
 \arguments{
 \item{rs_i}{Raster stack or brick with inundated cells = 1}
 
+\item{rs_c}{Raster stack or brick with inundated and connected cells = 1 as from 'hsa_connectivity'}
+
+\item{rs_dc}{Raster stack or brick with inundated and disconnected cells = 1 as from 'hsa_connectivity'}
+
+\item{rs_noinun}{Raster stack or brick with inundation groupings as from 'hsa_freq'}
+
 \item{fdf_e}{Flood events data frame for water year in format of 'utils_hsaflwsevts'
 function}
+
+\item{fdf}{Flows data frame for water year in format of 'utils_hsaflws' function}
 
 \item{igrp}{Vector of grouped floods days of length equal to number of rs_i layers,
 where each unique value is a unique flood event}

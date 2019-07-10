@@ -10,7 +10,8 @@
 #' @param wy Water year to add to filenames
 #' @param outdir Directory for writing rasters to file
 #' @export
-#' @return Writes rasters with groupings of inundation to file in the outdir.
+#' @return Flows data frame with metrics filled in. Writes rasters with groupings of
+#' inundation to file in the outdir.
 
 hsa_connectivity <- function(rs_ti0, fdf, wy, cres, aconv, connpoly, outdir) {
 
