@@ -9,11 +9,12 @@
 #' @param rs_i0 Raster stack or brick with inundated cells = 1
 #' @param fdf Flows data frame for water year in format of 'utils_hsaflws' function
 #' @param wy Water year to add to filenames
+#' @param ncor Number of cores for parallel processing
 #' @param outdir Directory for writing rasters to file
 #' @export
 #' @return Writes rasters with groupings of inundation to file in the outdir.
 
-hsa_freq <- function(rs_i0, fdf, wy, outdir) {
+hsa_freq <- function(rs_i0, fdf, wy, ncor, outdir) {
 
   # Make directory if necessary
   if (!dir.exists(paste0(outdir,"rsnoinun"))) {dir.create(paste0(outdir,"rsnoinun"))}
@@ -28,7 +29,7 @@ hsa_freq <- function(rs_i0, fdf, wy, outdir) {
     }
 
   # New RasterStack/Bricks: Get a daily raster stack with the groupings of inundation
-    beginCluster(ncores)
+    beginCluster(ncor)
       cl <- getCluster()
       clusterExport(cl,"fdf", envir = environment())
       rs_noinun <- clusterR(rs_i0, calc, args=list(fun=fun_noinun))

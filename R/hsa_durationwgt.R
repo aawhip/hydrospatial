@@ -11,11 +11,13 @@
 #' @param durshrt_wgt Weight for short duration inundation
 #' @param durlng_wgt Weight for long duration inundation
 #' @param durtoolng_wgt Weight for too-long duration inundation
+#' @param wy Water year to add to filenames
+#' @param ncor Number of cores for parallel processing
 #' @param outdir Directory for writing rasters to file
 #' @export
 #' @return Writes the duration weight rasters to file in the outdir.
 
-hsa_durationwgt <- function(rs_dayinun, durshrt, durlng, durshrt_wgt, durlng_wgt, durtoolng_wgt, wy, outdir) {
+hsa_durationwgt <- function(rs_dayinun, durshrt, durlng, durshrt_wgt, durlng_wgt, durtoolng_wgt, wy, ncor, outdir) {
 
   # Make directory if necessary
   if (!dir.exists(paste0(outdir,"rshab"))) {dir.create(paste0(outdir,"rshab"))}
@@ -32,7 +34,7 @@ hsa_durationwgt <- function(rs_dayinun, durshrt, durlng, durshrt_wgt, durlng_wgt
       return(x)
     }
 
-    beginCluster(ncores)
+    beginCluster(ncor)
       cl <- getCluster()
       clusterExport(cl, list("durshrt","durlng","durshrt_wgt", "durlng_wgt", "durtoolng_wgt"), envir = environment())
       rs_dayinunwgt <- clusterR(rs_dayinun, calc, args=list(fun = fun_daycred))

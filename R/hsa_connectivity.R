@@ -8,6 +8,9 @@
 #' @param rs_i0 Raster stack or brick with inundated cells = 1
 #' @param flws Flows data frame for water year in format of 'utils_hsaflws' function
 #' @param wy Water year to add to filenames
+#' @param cres Resolution of cell (in units squared)
+#' @param aconv Conversion factor for calculating area
+#' @param connpoly Shapefile covering areas that count as connected to the river low-flow channel
 #' @param outdir Directory for writing rasters to file
 #' @export
 #' @return Flows data frame with metrics filled in. Writes rasters with groupings of
@@ -28,12 +31,12 @@ hsa_connectivity <- function(rs_ti0, fdf, wy, cres, aconv, connpoly, outdir) {
       clmpfreq <- as.data.frame(freq(rs_clmp)) # clump freq table
       exclID <- clmpfreq$value[which(clmpfreq$count==1)] # count is the size (# of cells)
       rs_clmp[raster::match(rs_clmp, exclID)] <- NA # set the small patches to NA in the clump raster layer
-      ext <- extract(rs_clmp,connpoly, df=TRUE) # returns big dataframe of the clump #s that intersect the line, intersect() uses the extent...
-      conn <- unique(na.omit(ext[,2])) # get the clump numbers that intersect w the edge
+      ext <- extract(rs_clmp, connpoly, df=TRUE) # returns big dataframe of the clump #s that intersect the line, intersect() uses the extent...
+      conn <- unique(na.omit(ext[, 2])) # get the clump numbers that intersect w the edge
       nconn <- raster::unique(na.omit(rs_clmp))[which(!(raster::unique(na.omit(rs_clmp)) %in% conn))] # get the clump numbers that don't intersect w the edge
-      conn_df <- data.frame(ID=c(conn,nconn),nval=c(rep(1,length(conn)),rep(0,length(nconn)))) # data frame of from-to values
-      rs_clmp <- subs(rs_clmp,conn_df) # replace from with to values, not that quick; conn.stk[[i]]
-      rs_c <- stack(rs_c,rs_clmp) # write to file
+      conn_df <- data.frame(ID=c(conn, nconn),nval=c(rep(1, length(conn)), rep(0, length(nconn)))) # data frame of from-to values
+      rs_clmp <- subs(rs_clmp, conn_df) # replace from with to values, not that quick; conn.stk[[i]]
+      rs_c <- stack(rs_c, rs_clmp) # write to file
     }
 
     writeRaster(rs_c, filename=paste0(outdir,"rsc/rsc_",wy,".grd"), bylayer=T, suffix='numbers', overwrite=T)

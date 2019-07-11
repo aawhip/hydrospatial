@@ -16,12 +16,13 @@
 #' @param igrp Vector of grouped floods days of length equal to number of rs_i layers,
 #' where each unique value is a unique flood event
 #' @param wy Water year to add to filenames
+#' @param ncor Number of cores for parallel processing
 #' @param outdir Directory for writing rasters to file
 #' @export
 #' @return Flood events data frame for water year with duration metrics filled in.
 #' Writes the duration rasters to file in the outdir.
 
-hsa_duration <- function(rs_i, rs_c, rs_dc, rs_noinun, fdf_e, fdf, igrp, wy, outdir) {
+hsa_duration <- function(rs_i, rs_c, rs_dc, rs_noinun, fdf_e, fdf, igrp, wy, ncor, outdir) {
 
   # Make directories if necessary
   if (!dir.exists(paste0(outdir,"rsdur0"))) {dir.create(paste0(outdir,"rsdur0"))}
@@ -101,7 +102,7 @@ hsa_duration <- function(rs_i, rs_c, rs_dc, rs_noinun, fdf_e, fdf, igrp, wy, out
         return(x)
       }
 
-    beginCluster(ncores)
+    beginCluster(ncor)
       cl <- getCluster()
       clusterExport(cl, list("fdf","cnc"), envir = environment())
       rs_cinun0 <- clusterR(rs_c, calc, args=list(fun=fun_c))
@@ -124,7 +125,7 @@ hsa_duration <- function(rs_i, rs_c, rs_dc, rs_noinun, fdf_e, fdf, igrp, wy, out
         return(x)
       }
 
-    beginCluster(ncores)
+    beginCluster(ncor)
       rs_dayinun0 <- clusterR(rs_nocinun, calc, args=list(fun=fun_inunday))
     endCluster()
 

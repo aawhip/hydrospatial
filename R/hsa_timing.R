@@ -9,13 +9,17 @@
 #' @param mo_start Threshold start month
 #' @param mo_end Threshold number of days for long duration inundation
 #' @param fdf Flows data frame for water year in format of 'utils_hsaflws' function
+#' @param wy Water year to add to filenames
+#' @param cres Resolution of cell (in units squared)
+#' @param aconv Conversion factor for calculating area
+#' @param ncor Number of cores for parallel processing
 #' @param outdir Directory for writing rasters to file
 #' @export
 #' @return Flows data frame for water year with suitable habitat area (wua, weighted
 #' usable area) and hydraulic habitat suitability (hhs) filled in. Writes the suitability
 #' rasters with the final timing weighting to file in the outdir.
 
-hsa_timing <- function(rs_dayinunwgt, mo_start, mo_end, fdf, wy, cres, aconv, outdir) {
+hsa_timing <- function(rs_dayinunwgt, mo_start, mo_end, fdf, wy, cres, aconv, ncor, outdir) {
   # Change values to zero that are within the timing window
     mnths <- month(fdf$dt)
 
@@ -27,7 +31,7 @@ hsa_timing <- function(rs_dayinunwgt, mo_start, mo_end, fdf, wy, cres, aconv, ou
     return(x)
   }
 
-  beginCluster(ncores)
+  beginCluster(ncor)
     cl <- getCluster()
     clusterExport(cl, list("mnths","mo_end","mo_start"), envir = environment())
     rs_timewgt <- clusterR(rs_dayinunwgt, calc, args=list(fun=fun_time))

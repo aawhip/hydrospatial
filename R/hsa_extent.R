@@ -18,12 +18,13 @@
 #' @param cres Resolution of cell (in units squared)
 #' @param aconv Conversion factor for calculating area
 #' @param fp_a Area of study site
+#' @param ncor Number of cores for parallel processing
 #' @param outdir Directory for writing rasters to file
 #' @export
 #' @return Flows data frame with inundated area metrics filled in.
 #' Writes the three sets of rasters to file in the outdir.
 
-hsa_extent <- function(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, fp_a, outdir) {
+hsa_extent <- function(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, fp_a, ncor, outdir) {
 
   # Make directory if necessary
     if (!dir.exists(paste0(outdir,"rsi"))) {dir.create(paste0(outdir,"rsi"))}
@@ -34,7 +35,7 @@ hsa_extent <- function(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, fp_a,
     f2 <- function(x) {x >= dmin & x <= dmax} # Does inundation depth meet both min and max thresholds?
     f3 <- function(x) {x <= vmax} # Does velocity meet the max threshold?
 
-    beginCluster(ncores)
+    beginCluster(ncor)
       cl <- getCluster()
       clusterExport(cl,list("dmin","dmax","vmax"), envir = environment())
       rs_ti0 <- clusterR(rs_d, calc, args=list(fun=f1)) # get a set that's just whether inundated or not
