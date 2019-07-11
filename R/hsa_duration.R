@@ -42,14 +42,14 @@ hsa_duration <- function(rs_i, rs_c, rs_dc, rs_noinun, fdf_e, fdf, igrp, wy, out
     writeRaster(rs_dcdur0, filename=paste0(outdir,"rsdcdur0/rsdcdur0_",wy,".grd"), bylayer=T, suffix='numbers', overwrite=TRUE)
 
   # Add duration summaries to events flows data frame
-    fdf_e$dur_max <- cellStats(rs_dur, max) # Max duration across inundated cells
-    fdf_e$dur_m <- cellStats(rs_dur, mean) # Mean duration across inundated cells
-    fdf_e$dur_sd <- cellStats(rs_dur, sd) # SD of duration across inundated cells
+    fdf_e$dur_max <- cellStats(rs_dur, 'max') # Max duration across inundated cells
+    fdf_e$dur_m <- cellStats(rs_dur, 'mean') # Mean duration across inundated cells
+    fdf_e$dur_sd <- cellStats(rs_dur, 'sd') # SD of duration across inundated cells
     fdf_e$dur_cv <- fdf_e$dur_sd/fdf_e$dur_m*100 # CV of duration across inundated cells
-    fdf_e$cdur_m <- cellStats(rs_cdur, mean) # Mean connected duration across inundated cells
-    fdf_e$dcdur_m <- cellStats(rs_dcdur, mean) # Mean disconnected duration across inundated cells
-    fdf_e$cdur_sd <- cellStats(rs_cdur, sd) # SD of connected duration across inundated cells
-    fdf_e$dcdur_sd <- cellStats(rs_dcdur, sd) # SD of disconnected duration across inundated cells
+    fdf_e$cdur_m <- cellStats(rs_cdur, 'mean') # Mean connected duration across inundated cells
+    fdf_e$dcdur_m <- cellStats(rs_dcdur, 'mean') # Mean disconnected duration across inundated cells
+    fdf_e$cdur_sd <- cellStats(rs_cdur, 'sd') # SD of connected duration across inundated cells
+    fdf_e$dcdur_sd <- cellStats(rs_dcdur, 'sd') # SD of disconnected duration across inundated cells
     fdf_e$cdur_cv <- fdf_e$cdur_sd/fdf_e$cdur_m*100 # CV of connected duration across inundated cells
     fdf_e$dcdur_cv <- fdf_e$dcdur_sd/fdf_e$dcdur_m*100 # CV of disconnected duration across inundated cells
 

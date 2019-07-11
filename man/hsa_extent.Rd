@@ -4,7 +4,8 @@
 \alias{hsa_extent}
 \title{Function for hydrospatial analysis of inundation extent with depth and velocity criteria}
 \usage{
-hsa_extent(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, outdir)
+hsa_extent(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, fp_a,
+  outdir)
 }
 \arguments{
 \item{rs_d}{Raster stack or brick of depth}
@@ -24,6 +25,8 @@ hsa_extent(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, outdir)
 \item{cres}{Resolution of cell (in units squared)}
 
 \item{aconv}{Conversion factor for calculating area}
+
+\item{fp_a}{Area of study site}
 
 \item{outdir}{Directory for writing rasters to file}
 }

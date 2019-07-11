@@ -17,12 +17,13 @@
 #' @param wy Water year to add to filenames
 #' @param cres Resolution of cell (in units squared)
 #' @param aconv Conversion factor for calculating area
+#' @param fp_a Area of study site
 #' @param outdir Directory for writing rasters to file
 #' @export
 #' @return Flows data frame with inundated area metrics filled in.
 #' Writes the three sets of rasters to file in the outdir.
 
-hsa_extent <- function(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, outdir) {
+hsa_extent <- function(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, fp_a, outdir) {
 
   # Make directory if necessary
     if (!dir.exists(paste0(outdir,"rsi"))) {dir.create(paste0(outdir,"rsi"))}
@@ -51,6 +52,8 @@ hsa_extent <- function(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, outdi
     fdf$tinun_a <- cellStats(rs_ti0, sum)*cres*aconv
   # Add inundated area meeting thresholds to flows data frame for analysis
     fdf$inun_a <- cellStats(rs_i0, sum)*cres*aconv
+  # Add percent inundated area to flows data frame for analysis
+    fdf$pinun_a <- 100*(fdf$inun_a/fp_a)
 
   return(fdf)
 
