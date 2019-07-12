@@ -31,7 +31,6 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown,
-    igraph,
     rgeos,
     testthat
 VignetteBuilder: knitr

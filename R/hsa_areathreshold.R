@@ -16,7 +16,7 @@ hsa_areathreshold <- function(fdf, area_thr) {
   # Check that area during the flood event is at over the area threshold for at least 1 day
   for (i in unique(fdf$event_no)) { # for each flood event index of that year
     indx <- which(fdf$event_no==i) # indices of the days associated with that event
-    if (sum(fdf$inun_a[indx] >= area_thr, na.rm = TRUE) < 1) {
+    if (sum(fdf$tinun_a[indx] >= area_thr, na.rm = TRUE) < 1) {
       fdf$areaminreq[indx] <- 0
     } else {
       fdf$areaminreq[indx] <- 1

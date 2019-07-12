@@ -108,7 +108,7 @@ hsa_duration <- function(rs_i, rs_c, rs_dc, rs_noinun, fdf_e, fdf, igrp, wy, nco
       rs_cinun0 <- clusterR(rs_c, calc, args=list(fun=fun_c))
     endCluster()
 
-    # Multiply the raster stack of days to keep (as 1) with the raster stack of inundation groupings # check what happens with NA values and 0 values
+    # Multiply the raster stack of days to keep (as 1) with the raster stack of inundation groupings
       rs_nocinun0 <- overlay(rs_cinun0, rs_noinun, fun=function(x,y) x*y)
       rs_nocinun <- reclassify(rs_nocinun0, cbind(0,NA))
 
