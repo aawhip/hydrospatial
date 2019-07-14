@@ -4,7 +4,8 @@
 \alias{hsa_duration}
 \title{Function for hydrospatial analysis of inundation duration}
 \usage{
-hsa_duration(rs_i, rs_c, rs_dc, rs_noinun, fdf_e, fdf, igrp, wy, outdir)
+hsa_duration(rs_i, rs_c, rs_dc, rs_noinun, fdf_e, fdf, igrp, wy, ncor,
+  outdir)
 }
 \arguments{
 \item{rs_i}{Raster stack or brick with inundated cells = 1}
@@ -24,6 +25,8 @@ function}
 where each unique value is a unique flood event}
 
 \item{wy}{Water year to add to filenames}
+
+\item{ncor}{Number of cores for parallel processing}
 
 \item{outdir}{Directory for writing rasters to file}
 }

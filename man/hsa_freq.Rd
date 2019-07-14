@@ -4,7 +4,7 @@
 \alias{hsa_freq}
 \title{Function for hydrospatial analysis of inundation frequency}
 \usage{
-hsa_freq(rs_i0, fdf, wy, outdir)
+hsa_freq(rs_i0, fdf, wy, ncor, outdir)
 }
 \arguments{
 \item{rs_i0}{Raster stack or brick with inundated cells = 1}
@@ -12,6 +12,8 @@ hsa_freq(rs_i0, fdf, wy, outdir)
 \item{fdf}{Flows data frame for water year in format of 'utils_hsaflws' function}
 
 \item{wy}{Water year to add to filenames}
+
+\item{ncor}{Number of cores for parallel processing}
 
 \item{outdir}{Directory for writing rasters to file}
 }

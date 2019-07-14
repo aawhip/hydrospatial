@@ -9,6 +9,12 @@ hsa_connectivity(rs_ti0, fdf, wy, cres, aconv, connpoly, outdir)
 \arguments{
 \item{wy}{Water year to add to filenames}
 
+\item{cres}{Resolution of cell (in units squared)}
+
+\item{aconv}{Conversion factor for calculating area}
+
+\item{connpoly}{Shapefile covering areas that count as connected to the river low-flow channel}
+
 \item{outdir}{Directory for writing rasters to file}
 
 \item{rs_i0}{Raster stack or brick with inundated cells = 1}

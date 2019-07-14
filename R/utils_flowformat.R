@@ -10,7 +10,9 @@
 #' @importFrom dplyr group_by summarize
 #' @importFrom magrittr %>%
 #' @export
-#' @return Formatted daily flows data frame
+#' @return Formatted daily flows data frame with water year, water year day,
+#' julian day, cumulative flow, annual flow, 20% quantiles of annual flow,
+#' high flow of the last seven days, and rising or falling limb assigned
 
 utils_flowformat <- function(d){
 
@@ -20,18 +22,31 @@ utils_flowformat <- function(d){
   # Add water year
     d$wyr <- ifelse(month(d$dt)>=10,year(d$dt)+1,year(d$dt))
 
-  # Add water year day and cumulative sum of flow
+  # Add water year day, and cumulative sum of flow
     for (i in min(d$wyr):max(d$wyr)) {
       d$wyrd[d$wyr==i] <- seq(1:sum(d$wyr==i))
       d$cflw[d$wyr==i] <- cumsum(d$flw[d$wyr==i])*3600*24
     }
 
-  # Add annual flow volume
+  # Add julian day
+    d$jd <- yday(d$dt)
+
+  # Add annual flow volume and 20% quantiles
     anvol <- data.frame(d %>%
       group_by(wyr) %>%
       summarize(vol = sum(flw)*3600*24))
+
+    # Add 20% quantiles
+      qntl <- quantile(anvol$vol,probs = seq(0,1,0.2))
+      qntln <- c(0.2,0.4,0.6,0.8,1)
+      # For each quantile (above the 0 percentile), find the years with flow less than the one ahead and greater than the one before
+      for (i in 1:5) {
+        anvol$qntl[which(anvol$vol<=qntl[i+1]&anvol$vol>=qntl[i])] <- qntln[i]
+      }
+
     for (i in min(d$wyr):max(d$wyr)) {
       d$an_vol[d$wyr==i] <- anvol$vol[anvol$wyr==i]
+      d$qntl[d$wyr==i] <- anvol$qntl[anvol$wyr==i]
     }
 
   # Set the highest flow within the last 7 days

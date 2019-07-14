@@ -5,7 +5,7 @@
 \title{Function for hydrospatial application of inundation duration weight}
 \usage{
 hsa_durationwgt(rs_dayinun, durshrt, durlng, durshrt_wgt, durlng_wgt,
-  durtoolng_wgt, wy, outdir)
+  durtoolng_wgt, wy, ncor, outdir)
 }
 \arguments{
 \item{rs_dayinun}{Raster stack or brick of inundation day as from 'hsa_duration'}
@@ -19,6 +19,10 @@ hsa_durationwgt(rs_dayinun, durshrt, durlng, durshrt_wgt, durlng_wgt,
 \item{durlng_wgt}{Weight for long duration inundation}
 
 \item{durtoolng_wgt}{Weight for too-long duration inundation}
+
+\item{wy}{Water year to add to filenames}
+
+\item{ncor}{Number of cores for parallel processing}
 
 \item{outdir}{Directory for writing rasters to file}
 }

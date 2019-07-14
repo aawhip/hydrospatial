@@ -12,7 +12,9 @@ utils_flowformat(d)
 days.}
 }
 \value{
-Formatted daily flows data frame
+Formatted daily flows data frame with water year, water year day,
+julian day, cumulative flow, annual flow, 20% quantiles of annual flow,
+high flow of the last seven days, and rising or falling limb assigned
 }
 \description{
 This function accepts a daily flow time series and returns a formatted

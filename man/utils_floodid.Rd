@@ -25,5 +25,6 @@ thresholds for identifying flood days.
 A daily flow time series data frame is required (as from
 utils_flowformat function), including the following columns: dt (Date),
 wyr (water year), wyrd (water year day), flw (flow), cflow (cumulative
-flow to date)
+flow to date). Using a single value or vector of flood thresholds, flood
+days are identified and flood event metrics are determined.
 }

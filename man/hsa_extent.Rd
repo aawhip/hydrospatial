@@ -4,7 +4,7 @@
 \alias{hsa_extent}
 \title{Function for hydrospatial analysis of inundation extent with depth and velocity criteria}
 \usage{
-hsa_extent(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, fp_a,
+hsa_extent(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, fp_a, ncor,
   outdir)
 }
 \arguments{
@@ -27,6 +27,8 @@ hsa_extent(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, fp_a,
 \item{aconv}{Conversion factor for calculating area}
 
 \item{fp_a}{Area of study site}
+
+\item{ncor}{Number of cores for parallel processing}
 
 \item{outdir}{Directory for writing rasters to file}
 }

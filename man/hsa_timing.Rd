@@ -4,7 +4,8 @@
 \alias{hsa_timing}
 \title{Function for hydrospatial application of seasonal timing window}
 \usage{
-hsa_timing(rs_dayinunwgt, mo_start, mo_end, fdf, wy, cres, aconv, outdir)
+hsa_timing(rs_dayinunwgt, mo_start, mo_end, fdf, wy, cres, aconv, ncor,
+  outdir)
 }
 \arguments{
 \item{rs_dayinunwgt}{Raster stack or brick of inundation day as from 'hsa_duration'}
@@ -14,6 +15,14 @@ hsa_timing(rs_dayinunwgt, mo_start, mo_end, fdf, wy, cres, aconv, outdir)
 \item{mo_end}{Threshold number of days for long duration inundation}
 
 \item{fdf}{Flows data frame for water year in format of 'utils_hsaflws' function}
+
+\item{wy}{Water year to add to filenames}
+
+\item{cres}{Resolution of cell (in units squared)}
+
+\item{aconv}{Conversion factor for calculating area}
+
+\item{ncor}{Number of cores for parallel processing}
 
 \item{outdir}{Directory for writing rasters to file}
 }
