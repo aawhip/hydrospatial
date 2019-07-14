@@ -1,13 +1,5 @@
-#' A Cat Function
+#' A test function
 #'
-#' This function allows you to express your love of cats.
-#' @param love Do you love cats? Defaults to TRUE.
-#' @keywords cats
-#' @export
-#' @importFrom raster raster
-#' @importClassesFrom raster Extent BasicRaster Raster RasterLayer RasterBrick RasterStack RasterStackBrick
-#' @examples
-
 #' Add together two numbers.
 #'
 #' @param x A number.
