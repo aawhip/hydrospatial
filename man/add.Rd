@@ -2,7 +2,7 @@
 % Please edit documentation in R/testing.R
 \name{add}
 \alias{add}
-\title{Add together two numbers.}
+\title{A Cat Function}
 \usage{
 add(x, y)
 }
@@ -10,10 +10,17 @@ add(x, y)
 \item{x}{A number.}
 
 \item{y}{A number.}
+
+\item{love}{Do you love cats? Defaults to TRUE.}
 }
 \value{
 The sum of \code{x} and \code{y}.
 }
 \description{
-Add together two numbers.
+This function allows you to express your love of cats.
 }
+\examples{
+Add together two numbers.
+
+}
+\keyword{cats}

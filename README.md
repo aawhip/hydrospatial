@@ -1,16 +1,22 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 # hydrospatial
 An R-package for spatial and temporal analysis of floodplain inundation characteristics and habitat suitability from raster data
 
-## Plan for package structure
-### Organization
-Don't put all functions in one file or each function in its own separate file
+## Installation
+Installing the `hydrospatial` currently requires `devtools`. To install `hydrospatial`:
 
-### Conventions
-On function names/filenames, have generic classes (lowercase) in front (e.g., "read", "calc","plot"), then underscore, then shortname (lowercase w caps to distinguish between words), see USGS packages for this convention
+```r 
+devtools::install_github("sfei/hydrospatial")
+```
 
-### Questions
-How best to group functions if each is a separate file, use a common class name within the filename? The four main categories I think would be "predictrast", "hsa" (hydrospatialanalysis), "utils", and "vis" (plot/summary/visualization).
+This will install dependencies, if necessary: `raster`, `igraph`, `doParallel`.
 
-I think because I have the package depending on the raster package, I probably don't need to use importFrom
+## Implementation of the hydrospatial package
 
-Need to figure out how to do the scenario comparison - it certainly needs to be a wrap around the basic functions so that people don't have to have a comparison setup. Have an if statement check?
+This package is currently being used as part of the Central Valley Habitat Exchange's Chinook salmon Habitat Quantification Tool (HQT).
+
+For more information, see http://cvhe.org/

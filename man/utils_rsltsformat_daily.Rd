@@ -10,6 +10,8 @@ utils_rsltsformat_daily(d, daily, sc)
 \item{d}{Data frame in format used for 'hsa' functions}
 
 \item{daily}{Data frame of continous daily flow record}
+
+\item{sc}{Scenario name to add as a column}
 }
 \value{
 Flows data frame as input for hydrospatial analysis

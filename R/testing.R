@@ -7,16 +7,6 @@
 #' @importFrom raster raster
 #' @importClassesFrom raster Extent BasicRaster Raster RasterLayer RasterBrick RasterStack RasterStackBrick
 #' @examples
-#' cat_function()
-
-cat_function <- function(love=TRUE){
-  if(love==TRUE){
-    print("I love cats!")
-  }
-  else {
-    print("I am not a cool person.")
-  }
-}
 
 #' Add together two numbers.
 #'
