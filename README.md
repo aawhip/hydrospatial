@@ -7,13 +7,15 @@ output:
 An R-package for spatial and temporal analysis of floodplain inundation characteristics and habitat suitability from raster data
 
 ## Installation
-Installing the `hydrospatial` currently requires `devtools`. To install `hydrospatial`:
+Installing the `hydrospatial` requires `devtools`. To install `hydrospatial`:
 
 ```r 
 devtools::install_github("sfei/hydrospatial")
 ```
 
 This will install dependencies, if necessary: `raster`, `igraph`, `doParallel`.
+
+Note that this package is in development and should be checked regularly for updates.
 
 ## Implementation of the hydrospatial package
 
