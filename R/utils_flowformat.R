@@ -40,6 +40,7 @@ utils_flowformat <- function(d){
       qntl <- quantile(anvol$vol,probs = seq(0,1,0.2))
       qntln <- c(0.2,0.4,0.6,0.8,1)
       # For each quantile (above the 0 percentile), find the years with flow less than the one ahead and greater than the one before
+      anvol$qntl <- NA
       for (i in 1:5) {
         anvol$qntl[which(anvol$vol<=qntl[i+1]&anvol$vol>=qntl[i])] <- qntln[i]
       }
