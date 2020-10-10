@@ -3,6 +3,12 @@
 #' This function accepts a daily flow time series and returns a formatted
 #' daily flow time series for use in other hydrospatial functions
 #'
+#' @details Water years are defined as starting on October 1. Cumulative
+#' and annual volume are calculated in the units of the input flow (e.g.,
+#' cubic meters per second becomes cubic meters). The rising limb of the
+#' hydrograph is defined as flow that is greater than or equal to the flow
+#' over the last seven days.
+#'
 #' @param d A daily flow time series data frame including a date column
 #' ('dt') in mdy format and flow column ('flw'). There should be no missing
 #' days.
