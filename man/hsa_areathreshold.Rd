@@ -9,10 +9,10 @@ hsa_areathreshold(fdf, area_thr)
 \arguments{
 \item{fdf}{Flows data frame for water year in format of 'utils_hsaflws' function}
 
-\item{area_thr}{Minimum depth threshold for raster calculation}
+\item{area_thr}{Minimum area threshold}
 }
 \value{
-Flows data frame with areminreq field filled in.
+Flows data frame with areaminreq field filled in.
 }
 \description{
 This function accepts the flows data frame and calculates whether the area

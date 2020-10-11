@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils_hsaflws.R
 \name{utils_hsaflws}
 \alias{utils_hsaflws}
-\title{Function to prepare daily flows table for hydrospatial analysis}
+\title{Prepare daily flows table for hydrospatial analysis}
 \usage{
 utils_hsaflws(d, sc)
 }
@@ -15,7 +15,6 @@ utils_hsaflws(d, sc)
 Flows data frame as input for hydrospatial analysis
 }
 \description{
-This function prepares the flows table that will be used in
-hydrospatial analysis, taking as input the flows table from the
-'utils_flowstopredict' function.
+Prepares the flows table that will be used in hydrospatial analysis, taking
+as input the flows table from the 'utils_flowstopredict' function.
 }

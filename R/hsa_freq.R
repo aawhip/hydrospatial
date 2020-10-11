@@ -1,13 +1,17 @@
-#' Function for hydrospatial analysis of inundation frequency
+#' Hydrospatial analysis of inundation frequency
 #'
-#' This function accepts a raster stack/brick representing
+#' Accepts a raster stack/brick representing inundated area (from
+#' \code{hsa_extent}) and assigns unique values per cell across the stack/brick
+#' for each group of consecutive days of inundation.
 #'
-#' @details Input rasters are in the 'rsi' format of output from the hsa_extent function,
-#' where cells = 1 are inundated and non-inundated cells = 0. Rasters are written to
-#' file in a 'rsnoinun' directory within 'outdir'.
+#' @details Input rasters are in the 'rsi' format of output from
+#'   \code{hsa_extent}, where cells = 1 are inundated (meeting depth and
+#'   velocity threshold criteria) and non-inundated cells = 0. Rasters are
+#'   written to file in a 'rsnoinun' directory within 'outdir'.
 #'
 #' @param rs_i0 Raster stack or brick with inundated cells = 1
-#' @param fdf Flows data frame for water year in format of 'utils_hsaflws' function
+#' @param fdf Flows data frame for water year in format of 'utils_hsaflws'
+#'   function
 #' @param wy Water year to add to filenames
 #' @param ncor Number of cores for parallel processing
 #' @param outdir Directory for writing rasters to file

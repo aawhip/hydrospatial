@@ -1,8 +1,7 @@
-#' Function to prepare flood events table for hydrospatial analysis
+#' Prepare flood events table for hydrospatial analysis
 #'
-#' This function prepares the flood events table that will be used in
-#' hydrospatial analysis, taking as input the flows table from the
-#' 'utils_hsaflws' function.
+#' Prepares the flood events table that will be used in hydrospatial analysis,
+#' taking as input the flows table from the 'utils_hsaflws' function.
 #'
 #' @param d Data frame in format of 'utils_hsaflws' function
 #' @param sc Scenario name

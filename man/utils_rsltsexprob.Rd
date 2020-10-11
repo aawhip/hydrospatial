@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils_rsltsexprob.R
 \name{utils_rsltsexprob}
 \alias{utils_rsltsexprob}
-\title{Function to set exceedance probability table from annual time series}
+\title{Set exceedance probability table from annual time series}
 \usage{
 utils_rsltsexprob(d, tmsrs, sc)
 }
@@ -17,6 +17,6 @@ utils_rsltsexprob(d, tmsrs, sc)
 Flows data frame as input for hydrospatial analysis
 }
 \description{
-This function prepares the exceedance probability table from
-time series results table for use in visualizing.
+Prepares the exceedance probability table from time series results table for
+use in visualizing.
 }

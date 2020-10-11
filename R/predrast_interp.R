@@ -1,43 +1,46 @@
-#' Function to create interpolated rasters based on a flow time series and
-#' rasters at known flows
+#' Create interpolated rasters based on a flow time series and rasters at known
+#' flows
 #'
-#' This function creates and writes to file a raster corresponding to each
-#' record in an input flow time series, applying spatially-resolved piece-wise
-#' linear interpolation using rasters at known flows.
+#' Creates and writes to file a raster corresponding to each record in an input
+#' flow time series, applying spatially-resolved piece-wise linear interpolation
+#' using rasters at known flows.
 #'
 #' @details This function accepts a stack of rasters (typically of inundation
-#' depth or velocity, as from 2D hydrodynamic modeling) representing conditions
-#' at known flows, which are used to create an interpolated raster for each
-#' flow in the input flow time series. The input flow time series is typically
-#' daily flow time series.
+#'   depth or velocity, as from 2D hydrodynamic modeling) representing
+#'   conditions at known flows, which are used to create an interpolated raster
+#'   for each flow in the input flow time series. The input flow time series is
+#'   typically daily flow time series.
 #'
-#' If the ponding option is set to true, the function determines whether the flows
-#' in the input flow time series are on the rising or falling limb of the hydrograph
-#' and uses the corresponding rasters from the input raster stack. It also uses the
-#' flow threshold raster created by the 'predrast_thresholds' function to determine
-#' whether cells should be wet or dry on the falling limb of a hydrograph based on
-#' the high flow column.
+#'   If the ponding option is set to true, the function determines whether the
+#'   flows in the input flow time series are on the rising or falling limb of
+#'   the hydrograph and uses the corresponding rasters from the input raster
+#'   stack. It also uses the flow threshold raster created by the
+#'   'predrast_thresholds' function to determine whether cells should be wet or
+#'   dry on the falling limb of a hydrograph based on the high flow column.
 #'
-#' @param rs_mod Raster stack or brick with each layer corresponding to the flws vector
-#' @param r_ithr Raster layer of flow inundation thresholds of cells, as from the
-#' 'predrast_thresholds' function. Used if 'ponding' is TRUE.
-#' @param flws_mod Data frame of flows corresponding to the raster stack or brick,
-#' containing a 'flw' numeric column and a 'limb' attributing flows as either rising
-#' ('r') or falling ('f')
-#' @param flws_pred Data frame of flows for which to create interpolated rasters,
-#' composed of a date ('dt') column, flows ('flw') column, a limb ('limb') column
-#' assigning the flow as either on the rising ('r') or falling ('f') limb of the
-#' hydrograph, and a high flow ('hflw') column representing the recent peak flow to
-#' which ponded or disconnected areas correspond (such as the highest flow within the
-#' last seven days).
+#' @param rs_mod Raster stack or brick with each layer corresponding to the flws
+#'   vector
+#' @param r_ithr Raster layer of flow inundation thresholds of cells, as from
+#'   the 'predrast_thresholds' function. Used if 'ponding' is TRUE.
+#' @param flws_mod Data frame of flows corresponding to the raster stack or
+#'   brick, containing a 'flw' numeric column and a 'limb' attributing flows as
+#'   either rising ('r') or falling ('f')
+#' @param flws_pred Data frame of flows for which to create interpolated
+#'   rasters, composed of a date ('dt') column, flows ('flw') column, a limb
+#'   ('limb') column assigning the flow as either on the rising ('r') or falling
+#'   ('f') limb of the hydrograph, and a high flow ('hflw') column representing
+#'   the recent peak flow to which ponded or disconnected areas correspond (such
+#'   as the highest flow within the last seven days).
 #' @param ponding Set ponding to TRUE or FALSE. Default value is FALSE.
-#' @param sc Character string to attach to the output raster filenames (such as the
-#' name of the model scenario)
-#' @param vbl Character string to attach to the output raster filenames (e.g., 'Depth')
+#' @param sc Character string to attach to the output raster filenames (such as
+#'   the name of the model scenario)
+#' @param vbl Character string to attach to the output raster filenames (e.g.,
+#'   'Depth')
 #' @param preddir Directory to which the rasters will be written
 #' @export
 #' @importFrom raster stack overlay mask writeRaster
-#' @importClassesFrom raster Extent BasicRaster Raster RasterLayer RasterBrick RasterStack RasterStackBrick
+#' @importClassesFrom raster Extent BasicRaster Raster RasterLayer RasterBrick
+#'   RasterStack RasterStackBrick
 #' @return Rasters written to file
 
 predrast_interp <- function(rs_mod, r_ithr, flws_mod, flws_pred, ponding=FALSE, sc, vbl, preddir){

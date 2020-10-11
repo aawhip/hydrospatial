@@ -1,26 +1,38 @@
-#' Function for hydrospatial analysis of inundation duration
+#' Hydrospatial analysis of inundation duration
 #'
-#' This function accepts
+#' Accepts rasters indicating inundated cells (from \code{hsa_extent}),
+#' connected and disconnected cells (from \code{hsa_connectivity}), and
+#' consecutive days of inundation (from \code{hsa_freq}) to calculate 1) flood
+#' event rasters of inundation duration, inundation duration of connected cells,
+#' and inundation duration of disconnected cells, and 2) daily rasters of
+#' duration of inundation at a cell.
 #'
-#' @details Input rasters are in the 'rsi' format of output from the hsa_extent function,
-#' where cells = 1 are inundated and non-inundated cells = NA. Rasters are written to
-#' file in a 'rsdur0' directory within 'outdir'.
+#' @details Input rasters are from 'rsi' directory, where cells = 1 are
+#'   inundated and non-inundated cells = NA. Daily rasters of duration (with
+#'   filenames beginning in 'rsdayinun0') represent the number of days inundated
+#'   up to that day, and cells are checked such that they do not get
+#'   disconnected and stay disconnected (beyond seven days). Rasters are written
+#'   to file in a 'rsdur0' directory within 'outdir'.
 #'
 #' @param rs_i Raster stack or brick with inundated cells = 1
-#' @param rs_c Raster stack or brick with inundated and connected cells = 1 as from 'hsa_connectivity'
-#' @param rs_dc Raster stack or brick with inundated and disconnected cells = 1 as from 'hsa_connectivity'
-#' @param rs_noinun Raster stack or brick with inundation groupings as from 'hsa_freq'
-#' @param fdf_e Flood events data frame for water year in format of 'utils_hsaflwsevts'
-#' function
-#' @param fdf Flows data frame for water year in format of 'utils_hsaflws' function
-#' @param igrp Vector of grouped floods days of length equal to number of rs_i layers,
-#' where each unique value is a unique flood event
+#' @param rs_c Raster stack or brick with inundated and connected cells = 1 as
+#'   from 'hsa_connectivity'
+#' @param rs_dc Raster stack or brick with inundated and disconnected cells = 1
+#'   as from 'hsa_connectivity'
+#' @param rs_noinun Raster stack or brick with inundation groupings as from
+#'   'hsa_freq'
+#' @param fdf_e Flood events data frame for water year in format of
+#'   'utils_hsaflwsevts' function
+#' @param fdf Flows data frame for water year in format of 'utils_hsaflws'
+#'   function
+#' @param igrp Vector of grouped floods days of length equal to number of rs_i
+#'   layers, where each unique value is a unique flood event
 #' @param wy Water year to add to filenames
 #' @param ncor Number of cores for parallel processing
 #' @param outdir Directory for writing rasters to file
 #' @export
-#' @return Flood events data frame for water year with duration metrics filled in.
-#' Writes the duration rasters to file in the outdir.
+#' @return Flood events data frame for water year with duration metrics filled
+#'   in. Writes the duration rasters to file in the outdir.
 
 hsa_duration <- function(rs_i, rs_c, rs_dc, rs_noinun, fdf_e, fdf, igrp, wy, ncor, outdir) {
 

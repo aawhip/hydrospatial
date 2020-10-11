@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils_rsltsformat_daily.R
 \name{utils_rsltsformat_daily}
 \alias{utils_rsltsformat_daily}
-\title{Function to format daily results into continuous time series}
+\title{Format daily results into continuous time series}
 \usage{
 utils_rsltsformat_daily(d, daily, sc)
 }
@@ -17,7 +17,6 @@ utils_rsltsformat_daily(d, daily, sc)
 Flows data frame as input for hydrospatial analysis
 }
 \description{
-This function prepares the daily hsa results table from
-hydrospatial analysis and transforms it into a continuous time
-series for use in visualizing.
+Prepares the daily hsa results table from hydrospatial analysis and
+transforms it into a continuous time series for use in visualizing.
 }

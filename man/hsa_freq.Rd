@@ -2,14 +2,15 @@
 % Please edit documentation in R/hsa_freq.R
 \name{hsa_freq}
 \alias{hsa_freq}
-\title{Function for hydrospatial analysis of inundation frequency}
+\title{Hydrospatial analysis of inundation frequency}
 \usage{
 hsa_freq(rs_i0, fdf, wy, ncor, outdir)
 }
 \arguments{
 \item{rs_i0}{Raster stack or brick with inundated cells = 1}
 
-\item{fdf}{Flows data frame for water year in format of 'utils_hsaflws' function}
+\item{fdf}{Flows data frame for water year in format of 'utils_hsaflws'
+function}
 
 \item{wy}{Water year to add to filenames}
 
@@ -21,10 +22,13 @@ hsa_freq(rs_i0, fdf, wy, ncor, outdir)
 Writes rasters with groupings of inundation to file in the outdir.
 }
 \description{
-This function accepts a raster stack/brick representing
+Accepts a raster stack/brick representing inundated area (from
+\code{hsa_extent}) and assigns unique values per cell across the stack/brick
+for each group of consecutive days of inundation.
 }
 \details{
-Input rasters are in the 'rsi' format of output from the hsa_extent function,
-where cells = 1 are inundated and non-inundated cells = 0. Rasters are written to
-file in a 'rsnoinun' directory within 'outdir'.
+Input rasters are in the 'rsi' format of output from
+  \code{hsa_extent}, where cells = 1 are inundated (meeting depth and
+  velocity threshold criteria) and non-inundated cells = 0. Rasters are
+  written to file in a 'rsnoinun' directory within 'outdir'.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/hsa_duration.R
 \name{hsa_duration}
 \alias{hsa_duration}
-\title{Function for hydrospatial analysis of inundation duration}
+\title{Hydrospatial analysis of inundation duration}
 \usage{
 hsa_duration(rs_i, rs_c, rs_dc, rs_noinun, fdf_e, fdf, igrp, wy, ncor,
   outdir)
@@ -10,19 +10,23 @@ hsa_duration(rs_i, rs_c, rs_dc, rs_noinun, fdf_e, fdf, igrp, wy, ncor,
 \arguments{
 \item{rs_i}{Raster stack or brick with inundated cells = 1}
 
-\item{rs_c}{Raster stack or brick with inundated and connected cells = 1 as from 'hsa_connectivity'}
+\item{rs_c}{Raster stack or brick with inundated and connected cells = 1 as
+from 'hsa_connectivity'}
 
-\item{rs_dc}{Raster stack or brick with inundated and disconnected cells = 1 as from 'hsa_connectivity'}
+\item{rs_dc}{Raster stack or brick with inundated and disconnected cells = 1
+as from 'hsa_connectivity'}
 
-\item{rs_noinun}{Raster stack or brick with inundation groupings as from 'hsa_freq'}
+\item{rs_noinun}{Raster stack or brick with inundation groupings as from
+'hsa_freq'}
 
-\item{fdf_e}{Flood events data frame for water year in format of 'utils_hsaflwsevts'
+\item{fdf_e}{Flood events data frame for water year in format of
+'utils_hsaflwsevts' function}
+
+\item{fdf}{Flows data frame for water year in format of 'utils_hsaflws'
 function}
 
-\item{fdf}{Flows data frame for water year in format of 'utils_hsaflws' function}
-
-\item{igrp}{Vector of grouped floods days of length equal to number of rs_i layers,
-where each unique value is a unique flood event}
+\item{igrp}{Vector of grouped floods days of length equal to number of rs_i
+layers, where each unique value is a unique flood event}
 
 \item{wy}{Water year to add to filenames}
 
@@ -31,14 +35,22 @@ where each unique value is a unique flood event}
 \item{outdir}{Directory for writing rasters to file}
 }
 \value{
-Flood events data frame for water year with duration metrics filled in.
-Writes the duration rasters to file in the outdir.
+Flood events data frame for water year with duration metrics filled
+  in. Writes the duration rasters to file in the outdir.
 }
 \description{
-This function accepts
+Accepts rasters indicating inundated cells (from \code{hsa_extent}),
+connected and disconnected cells (from \code{hsa_connectivity}), and
+consecutive days of inundation (from \code{hsa_freq}) to calculate 1) flood
+event rasters of inundation duration, inundation duration of connected cells,
+and inundation duration of disconnected cells, and 2) daily rasters of
+duration of inundation at a cell.
 }
 \details{
-Input rasters are in the 'rsi' format of output from the hsa_extent function,
-where cells = 1 are inundated and non-inundated cells = NA. Rasters are written to
-file in a 'rsdur0' directory within 'outdir'.
+Input rasters are from 'rsi' directory, where cells = 1 are
+  inundated and non-inundated cells = NA. Daily rasters of duration (with
+  filenames beginning in 'rsdayinun0') represent the number of days inundated
+  up to that day, and cells are checked such that they do not get
+  disconnected and stay disconnected (beyond seven days). Rasters are written
+  to file in a 'rsdur0' directory within 'outdir'.
 }

@@ -1,16 +1,17 @@
-#' Function for hydrospatial analysis of inundation extent with depth and velocity criteria
+#' Hydrospatial analysis of inundation extent with depth and velocity criteria
 #'
-#' This function accepts depth and velocity rasters and associated flows data frame
-#' for a given water year and calculates three sets of boolean rasters, indicating
-#' whether cells are inundated, whether they meet the depth thresholds, and whether
-#' they meet the velocity threshold. The area for each raster is determined and added
-#' to the flows data frame
+#' Accepts depth and velocity rasters (from \code{predrast_interp}) and
+#' associated flows data frame for a given water year and calculates three sets
+#' of binary rasters, indicating whether cells are inundated, whether they meet
+#' the depth thresholds, and whether they meet the velocity threshold. The area
+#' for each raster is determined and added to the flows data frame.
 #'
 #' @details Rasters are written to file in a 'rsi' directory within 'outdir'.
 #'
 #' @param rs_d Raster stack or brick of depth
 #' @param rs_v Raster stack or brick of velocity
-#' @param fdf Flows data frame for water year in format of 'utils_hsaflws' function
+#' @param fdf Flows data frame for water year in format of 'utils_hsaflws'
+#'   function
 #' @param dmin Minimum depth threshold for raster calculation
 #' @param dmax Maximum depth threshold for raster calculation
 #' @param vmax Maximum velocity threshold for raster calculation
@@ -21,8 +22,8 @@
 #' @param ncor Number of cores for parallel processing
 #' @param outdir Directory for writing rasters to file
 #' @export
-#' @return Flows data frame with inundated area metrics filled in.
-#' Writes the three sets of rasters to file in the outdir.
+#' @return Flows data frame with inundated area metrics filled in. Writes the
+#'   three sets of rasters to file in the outdir.
 
 hsa_extent <- function(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, fp_a, ncor, outdir) {
 

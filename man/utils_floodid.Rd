@@ -2,29 +2,50 @@
 % Please edit documentation in R/utils_floodid.R
 \name{utils_floodid}
 \alias{utils_floodid}
-\title{Function to identify flood days and events}
+\title{Identify flood days and events from a time series based on flow thresholds}
 \usage{
-utils_floodid(d, Q, outdir)
+utils_floodid(d, Q, outdir = NULL)
 }
 \arguments{
 \item{d}{Data frame of daily flow time series}
 
 \item{Q}{Vector of flow thresholds to use to id flood days}
 
-\item{outdir}{Directory for writing flows to file}
+\item{outdir}{Directory for writing flows to file (optional)}
 }
 \value{
-List of 1) floods, 2) filenames, 3) daily flows with flood id.
-Writes to file daily and flood event csvs.
+List of 1) flood events with calculated metrics, 2) filenames, 3)
+  daily flows with flood ID assigned. If directory is provided, writes daily
+  and flood event csvs to file.
 }
 \description{
-This function accepts a daily flow time series and a vector of flood
-thresholds for identifying flood days.
+Accepts a daily flow time series and a vector of flood thresholds for
+identifying flood days and determining flood event metrics.
 }
 \details{
 A daily flow time series data frame is required (as from
-utils_flowformat function), including the following columns: dt (Date),
-wyr (water year), wyrd (water year day), flw (flow), cflow (cumulative
-flow to date). Using a single value or vector of flood thresholds, flood
-days are identified and flood event metrics are determined.
+  \code{utils_flowformat}), including the following columns: \itemize{ \item
+  \emph{dt}: date \item \emph{wyr}: water year \item \emph{wyrd}: water year
+  day \item \emph{flw}: flow \item \emph{cflw}: cumulative flow to date \item
+  \emph{anvol}: annual volume} Using a single value or vector of flood
+  thresholds, flood days are identified and flood event metrics are
+  determined. Flood event metrics include: \itemize{ \item \emph{cent_d}: the
+  water year day at the volume centroid of the flood event \item \emph{pk_d}:
+  water year day at the peak flow of the flood event \item \emph{no_d}: flood
+  event duration in days \item \emph{no_pks}: number of flood peaks \item
+  \emph{flw_pk}: peak daily flow \item \emph{flw_mean}: mean daily flow for
+  flood event \item \emph{vol}: volume of flood event \item
+  \emph{frac_v_cent}: number of days to >0.5 of total flood event volume
+  divided by the total number event days \item \emph{r_rising}: biggest
+  difference in flow between sequential days on the rising limb of hydrograph
+  \item \emph{r_falling}: biggest difference in flow between sequential days
+  on the falling limb of hydrograph \item \emph{cflw}: cumulative volume of
+  flow of water year to start of flood event} Also included: \itemize{ \item
+  \emph{start}: start date of flood with origin '1970-01-01' \item
+  \emph{end}: end date with origin '1970-01-01' \item \emph{start_wym}: water
+  year month in which the flood starts \item \emph{end_wym}: water year month
+  in which the flood ends \item \emph{start_d}: water year day at the start
+  of flood \item \emph{end_d}: water year day at the end of flood \item
+  \emph{anvol}: total annual flow volume} Analysis does not depend on units.
+  Water year is assumed to start on October 1.
 }

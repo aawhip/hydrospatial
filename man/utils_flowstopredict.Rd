@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils_flowstopredict.R
 \name{utils_flowstopredict}
 \alias{utils_flowstopredict}
-\title{Function to format flows for raster prediction}
+\title{Format flows for raster prediction}
 \usage{
 utils_flowstopredict(d, d_flds, thr, postfld = 7, outdir)
 }
@@ -18,15 +18,15 @@ utils_flowstopredict(d, d_flds, thr, postfld = 7, outdir)
 \item{outdir}{Directory for writing flows to file}
 }
 \value{
-Flows data frame as input for raster prediction, written to
-file as "flows_topred_full.csv"
+Flows data frame as input for raster prediction, written to file as
+  "flows_topred_full.csv"
 }
 \description{
-This function identifies flow days for hydrospatial analysis,
-to be used as input for raster prediction
+Identifies flow days for hydrospatial analysis, to be used as input for
+raster prediction
 }
 \details{
-It takes a formatted flow time series and flood day
-flow time series from hydrospatial 'utils_flowformat' and
-'utils_floodid' functions, respectively.
+It takes a formatted flow time series and flood day flow time series
+  from hydrospatial 'utils_flowformat' and 'utils_floodid' functions,
+  respectively.
 }

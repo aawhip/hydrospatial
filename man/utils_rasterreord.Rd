@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils_rasterreord.R
 \name{utils_rasterreord}
 \alias{utils_rasterreord}
-\title{Function to reorder raster files}
+\title{Reorder raster files}
 \usage{
 utils_rasterreord(fls)
 }
@@ -13,7 +13,5 @@ utils_rasterreord(fls)
 Reordered filenames
 }
 \description{
-This function prepares the flows table that will be used in
-hydrospatial analysis, taking as input the flows table from the
-'utils_flowstopredict' function.
+Reorders raster files based on parsing vector of filenames.
 }
