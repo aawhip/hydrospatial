@@ -1,33 +1,41 @@
-#' Function to identify flood days and events
+#' Identify flood days and events from a time series based on flow thresholds
 #'
-#' This function accepts a daily flow time series and a vector of flood
-#' thresholds for identifying flood days and determining flood event metrics.
+#' Accepts a daily flow time series and a vector of flood thresholds for
+#' identifying flood days and determining flood event metrics.
 #'
 #' @details A daily flow time series data frame is required (as from
-#' utils_flowformat function), including the following columns: dt (Date),
-#' wyr (water year), wyrd (water year day), flw (flow), cflow (cumulative
-#' flow to date), and an_vol (annual volume). Using a single value or vector
-#' of flood thresholds, flood days are identified and flood event metrics
-#' are determined. Flood event metrics include: cent_d (the water year day
-#' at the volume centroid of the flood), pk_d (water year day at the peak
-#' flow of the event), no_d (flood event duration in days), no_pks (number
-#' of flood peaks), flw_pk (peak daily flow), flw_mean (mean daily flow),
-#' vol (volume of flood event, including below-threshold flow), frac_v_cent
-#' (number of days to >0.5 of total event volume divided by the total number
-#' event days), r_rising (biggest difference in flow between days on the
-#' rising limb of hydrograph), r_falling (biggest difference in flow between
-#' days on the falling limb of hydrograph. Analysis is the same, regardless
-#' of units. Water year is assumed to start on Oct 1.
+#'   \code{utils_flowformat}), including the following columns: 'dt' (Date),
+#'   'wyr' (water year), 'wyrd' (water year day), 'flw' (flow), 'cflw'
+#'   (cumulative flow to date), and 'anvol' (annual volume). Using a single
+#'   value or vector of flood thresholds, flood days are identified and flood
+#'   event metrics are determined. Flood event metrics include: 'cent_d' (the
+#'   water year day at the volume centroid of the flood event), 'pk_d' (water
+#'   year day at the peak flow of the flood event), 'no_d' (flood event duration
+#'   in days), 'no_pks' (number of flood peaks), 'flw_pk' (peak daily flow),
+#'   'flw_mean' (mean daily flow for flood event), 'vol' (volume of flood
+#'   event), 'frac_v_cent' (number of days to >0.5 of total flood event volume
+#'   divided by the total number event days), 'r_rising' (biggest difference in
+#'   flow between sequential days on the rising limb of hydrograph), 'r_falling'
+#'   (biggest difference in flow between sequential days on the falling limb of
+#'   hydrograph), 'cflw' (cumulative volume of flow of water year to start of
+#'   flood event). Also included: 'start' (start date of flood with origin
+#'   '1970-01-01'), 'end' (end date with origin '1970-01-01'), 'start_wym'
+#'   (water year month in which the flood starts), 'end_wym' (water year month
+#'   in which the flood ends), 'start_d' (water year day at the start of flood),
+#'   'end_d' (water year day at the end of flood), 'anvol' (total annual flow
+#'   volume). Analysis does not depend on units. Water year is assumed to start
+#'   on October 1.
 #'
 #' @param d Data frame of daily flow time series
 #' @param Q Vector of flow thresholds to use to id flood days
-#' @param outdir Directory for writing flows to file
+#' @param outdir Directory for writing flows to file (optional)
 #' @importFrom lubridate month day year mdy ymd
 #' @export
-#' @return List of 1) flood events, 2) filenames, 3) daily flows with flood id.
-#' Writes to file daily and flood event csvs.
+#' @return List of 1) flood events with calculated metrics, 2) filenames, 3)
+#'   daily flows with flood ID assigned. If directory is provided, writes daily
+#'   and flood event csvs to file.
 
-utils_floodid <- function(d, Q, outdir) {
+utils_floodid <- function(d, Q, outdir = NULL) {
 
   # Set variables
   f_data <- vector("list",length(Q)) # Create a list to store data from each threshold value
@@ -37,18 +45,25 @@ utils_floodid <- function(d, Q, outdir) {
   # For each threshold value, pull out the flood events associated with it
   for (i in 1:length(Q)) {
     # Initiate the main flood data frame and variables to be summarized
-    names <- c("wyr","start","end","start_wym","end_wym","start_d","end_d","cent_d","pk_d","no_d","no_pks","flw_pk","flw_mean","vol",
-               "frac_v_cent","r_rising","r_falling","cflw","an_vol")
-    # wyr = water year, start = start date with origin = "1970-01-01", end = end date with origin = "1970-01-01", start_wym = numeric wy mo of
-    # start, end_wym = numeric wy mo of end, start_d = water year day at start of flood, end_d = water year day at end of flood, cent_d = water
-    # year day at the vol centroid of flood, pk_d = water year day at the peak flow of event, no_d = duration in days, no_pks = number of peaks,
-    # flw_pk = peak daily flow, flw_mean = mean daily flow, vol = volume of event, frac_v_cent = days to >0.5 total event vol divided by total
-    # days, r_rising = -max rising rate, r_falling = max falling rate, cflw = cumulative vol flow of wyr to start of event
+    names <- c("wyr","start","end","start_wym","end_wym","start_d","end_d","cent_d",
+               "pk_d","no_d","no_pks","flw_pk","flw_mean","vol","frac_v_cent",
+               "r_rising","r_falling","cflw","anvol")
+    # wyr = water year, start = start date with origin = "1970-01-01", end = end
+    # date with origin = "1970-01-01", start_wym = numeric wy mo of start,
+    # end_wym = numeric wy mo of end, start_d = water year day at start of
+    # flood, end_d = water year day at end of flood, cent_d = water year day at
+    # the vol centroid of flood, pk_d = water year day at the peak flow of
+    # event, no_d = duration in days, no_pks = number of peaks, flw_pk = peak
+    # daily flow, flw_mean = mean daily flow, vol = volume of event, frac_v_cent
+    # = days to >0.5 total event vol divided by total days, r_rising = -max
+    # rising rate, r_falling = max falling rate, cflw = cumulative vol flow of
+    # wyr to start of event, anvol = total annual flow volume for given water
+    # year.
 
     # Initiate the table to house the flood event number and flow for each day of flood
     floods <- as.data.frame(matrix(0,nrow=nrow(d),ncol=length(names)))
     colnames(floods) <- names
-    names_d <- c("dt","wyr","event_no","day","flw","wyrd","mo","yr","fday","an_vol","hflw","limb")
+    names_d <- c("dt","wyr","event_no","day","flw","wyrd","mo","yr","fday","anvol","hflw","limb")
     daily <- as.data.frame(matrix(0,nrow=nrow(d),ncol=length(names_d))) # Initiate a data frame that will be trimmed later
     colnames(daily) <- names_d
     daily$dt <- as.Date(as.character(NA))
@@ -116,7 +131,7 @@ utils_floodid <- function(d, Q, outdir) {
           k <- k+1 # advance to the next flood event number
           dc <- dc+1 # advance the daily counter
           floods$wyr[k] <- d$wyr[j] # Enter the water year at the start of the flood
-          floods$an_vol[k] <- d$an_vol[j] # Enter the total annual flow for the water year
+          floods$anvol[k] <- d$anvol[j] # Enter the total annual flow for the water year
           floods$start[k] <-  d$dt[j] # Enter the start date of the flood
           floods$start_wym[k] <- ifelse(month(d$dt[j])>=10,month(d$dt[j])-9,month(d$dt[j])+3) # Enter the wy month of the start of the flood event
           floods$start_d[k] <- d$wyrd[j] # Enter the water year day of the start of the flood event
@@ -142,7 +157,7 @@ utils_floodid <- function(d, Q, outdir) {
           daily$fday[dc] <- flooddays # Enter the flood day
           daily$flw[dc] <- d$flw[j] # Enter the flow that day
           daily$dt[dc] <- d$dt[j] # Enter the date
-          daily$an_vol[dc] <- d$an_vol[j] # Enter annual volume
+          daily$anvol[dc] <- d$anvol[j] # Enter annual volume
           daily$hflw[dc] <- d$hflw[j] # Enter recent high flow
           daily$limb[dc] <- as.character(d$limb[j]) # Enter if on a rising or falling limb
         }
@@ -183,7 +198,7 @@ utils_floodid <- function(d, Q, outdir) {
           daily$fday[dc] <- flooddays # Enter the flood day
           daily$flw[dc] <- d$flw[j] # Enter the flow that day
           daily$dt[dc] <- d$dt[j] # Enter the date
-          daily$an_vol[dc] <- d$an_vol[j] # Enter annual volume
+          daily$anvol[dc] <- d$anvol[j] # Enter annual volume
           daily$hflw[dc] <- d$hflw[j] # Enter recent high flow
           daily$limb[dc] <- as.character(d$limb[j]) # Enter if on a rising or falling limb
         }
@@ -194,13 +209,18 @@ utils_floodid <- function(d, Q, outdir) {
     assign(paste("floods",round(Q[i]),sep=""),floods) # Create a data frame that stores the output
     f_data[[i]] <- floods # Store the info for that threshold value into the list
     f_filenames[i] <- paste0("floodid_events",round(Q[i])) # Create a vector of filenames
-    write.csv(floods, file = paste0(outdir,"floods",round(Q[i]),".csv"),row.names = FALSE) # Write the files
+    if(!is.null(outdir)) {
+      # Write the flood event files
+      write.csv(floods, file = paste0(outdir,"floods",round(Q[i]),".csv"),row.names = FALSE)
+    }
 
     daily <- na.omit(daily) # daily[apply(daily[,-1], 1, function(x) !all(x==0)),] # Remove rows of 0s
     assign(paste("daily",round(Q[i]),sep=""),daily) # Create a data frame that stores the output
     daily_data[[i]] <- daily
-    write.csv(daily,file=paste0(outdir,"floodid_daily",round(Q[i]),".csv"),row.names = FALSE) # Write the daily files
-
+    if(!is.null(outdir)) {
+      # Write the daily files
+      write.csv(daily,file=paste0(outdir,"floodid_daily",round(Q[i]),".csv"),row.names = FALSE)
+    }
   }
 
   output<-list(f_data,f_filenames,daily_data)

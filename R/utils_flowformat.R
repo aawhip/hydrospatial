@@ -52,7 +52,7 @@ utils_flowformat <- function(d){
       }
 
     for (i in min(d$wyr):max(d$wyr)) {
-      d$an_vol[d$wyr==i] <- anvol$vol[anvol$wyr==i]
+      d$anvol[d$wyr==i] <- anvol$vol[anvol$wyr==i]
       d$qntl[d$wyr==i] <- anvol$qntl[anvol$wyr==i]
     }
 
