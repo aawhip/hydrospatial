@@ -1,7 +1,7 @@
-#' Function to set exceedance probability table from annual time series
+#' Set exceedance probability table from annual time series
 #'
-#' This function prepares the exceedance probability table from
-#' time series results table for use in visualizing.
+#' Prepares the exceedance probability table from time series results table for
+#' use in visualizing.
 #'
 #' @param d Data frame in format used for 'hsa' functions
 #' @param tmsrs Data frame of annual time series from 'utils_areaday' function

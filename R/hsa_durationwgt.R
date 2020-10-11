@@ -1,11 +1,13 @@
-#' Function for hydrospatial application of inundation duration weight
+#' Hydrospatial application of inundation duration weight
 #'
-#' This function accepts
+#' Accepts daily rasters of inundation duration (from \code{hsa_duration}) and
+#' applies duration weights.
 #'
-#' @details Input rasters are in the  Rasters are written to
-#' file in a 'rsdur0' directory within 'outdir'.
+#' @details Input rasters from 'rsdayinun0' directory. Rasters are written to file in
+#'   a 'rshab' directory within 'outdir'.
 #'
-#' @param rs_dayinun Raster stack or brick of inundation day as from 'hsa_duration'
+#' @param rs_dayinun Raster stack or brick of inundation day as from
+#'   'hsa_duration'
 #' @param durshrt Threshold number of days for short duration inundation
 #' @param durlng Threshold number of days for long duration inundation
 #' @param durshrt_wgt Weight for short duration inundation

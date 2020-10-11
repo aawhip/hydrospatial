@@ -1,8 +1,7 @@
-#' Function to prepare daily flows table for hydrospatial analysis
+#' Prepare daily flows table for hydrospatial analysis
 #'
-#' This function prepares the flows table that will be used in
-#' hydrospatial analysis, taking as input the flows table from the
-#' 'utils_flowstopredict' function.
+#' Prepares the flows table that will be used in hydrospatial analysis, taking
+#' as input the flows table from the 'utils_flowstopredict' function.
 #'
 #' @param d Data frame in format of 'utils_flowstopredict' function
 #' @param sc Scenario name

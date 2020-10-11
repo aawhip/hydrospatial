@@ -1,11 +1,11 @@
-#' Function to format flows for raster prediction
+#' Format flows for raster prediction
 #'
-#' This function identifies flow days for hydrospatial analysis,
-#' to be used as input for raster prediction
+#' Identifies flow days for hydrospatial analysis, to be used as input for
+#' raster prediction
 #'
-#' @details It takes a formatted flow time series and flood day
-#' flow time series from hydrospatial 'utils_flowformat' and
-#' 'utils_floodid' functions, respectively.
+#' @details It takes a formatted flow time series and flood day flow time series
+#'   from hydrospatial 'utils_flowformat' and 'utils_floodid' functions,
+#'   respectively.
 #'
 #' @param d A daily flow time series data frame
 #' @param d_flds Flood days data frame
@@ -14,8 +14,8 @@
 #' @param outdir Directory for writing flows to file
 #' @importFrom dplyr select left_join
 #' @export
-#' @return Flows data frame as input for raster prediction, written to
-#' file as "flows_topred_full.csv"
+#' @return Flows data frame as input for raster prediction, written to file as
+#'   "flows_topred_full.csv"
 
 utils_flowstopredict <- function(d, d_flds, thr, postfld = 7, outdir){
 

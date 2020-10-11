@@ -1,8 +1,6 @@
-#' Function to reorder raster files
+#' Reorder raster files
 #'
-#' This function prepares the flows table that will be used in
-#' hydrospatial analysis, taking as input the flows table from the
-#' 'utils_flowstopredict' function.
+#' Reorders raster files based on parsing vector of filenames.
 #'
 #' @param fls Vector of filenames with numbers to order after the last "_"
 #' @importFrom dplyr mutate

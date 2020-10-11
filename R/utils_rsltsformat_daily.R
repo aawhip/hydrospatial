@@ -1,8 +1,7 @@
-#' Function to format daily results into continuous time series
+#' Format daily results into continuous time series
 #'
-#' This function prepares the daily hsa results table from
-#' hydrospatial analysis and transforms it into a continuous time
-#' series for use in visualizing.
+#' Prepares the daily hsa results table from hydrospatial analysis and
+#' transforms it into a continuous time series for use in visualizing.
 #'
 #' @param d Data frame in format used for 'hsa' functions
 #' @param daily Data frame of continous daily flow record

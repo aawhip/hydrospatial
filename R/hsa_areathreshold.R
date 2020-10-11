@@ -7,9 +7,9 @@
 #' flood event, all days are given a value of one, otherwise the days are set to zero.
 #'
 #' @param fdf Flows data frame for water year in format of 'utils_hsaflws' function
-#' @param area_thr Minimum depth threshold for raster calculation
+#' @param area_thr Minimum area threshold
 #' @export
-#' @return Flows data frame with areminreq field filled in.
+#' @return Flows data frame with areaminreq field filled in.
 
 hsa_areathreshold <- function(fdf, area_thr) {
 

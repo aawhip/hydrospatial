@@ -1,23 +1,27 @@
-#' Function for hydrospatial application of seasonal timing window
+#' Hydrospatial application of seasonal timing window
 #'
-#' This function accepts
+#' Accepts rasters (from \code{hsa_durationwgt}) and applies a timing window
+#' where values are assigned to zero if they fall outside the window.
 #'
-#' @details Input rasters are in the  Rasters are written to
-#' file in a 'rsdur0' directory within 'outdir'.
+#' @details Input rasters from 'rshab' directory. Rasters are written to file in
+#'   'rshab' directory within 'outdir'.
 #'
-#' @param rs_dayinunwgt Raster stack or brick of inundation day as from 'hsa_duration'
+#' @param rs_dayinunwgt Raster stack or brick of inundation day as from
+#'   'hsa_duration'
 #' @param mo_start Threshold start month
 #' @param mo_end Threshold number of days for long duration inundation
-#' @param fdf Flows data frame for water year in format of 'utils_hsaflws' function
+#' @param fdf Flows data frame for water year in format of 'utils_hsaflws'
+#'   function
 #' @param wy Water year to add to filenames
 #' @param cres Resolution of cell (in units squared)
 #' @param aconv Conversion factor for calculating area
 #' @param ncor Number of cores for parallel processing
 #' @param outdir Directory for writing rasters to file
 #' @export
-#' @return Flows data frame for water year with suitable habitat area (wua, weighted
-#' usable area) and hydraulic habitat suitability (hhs) filled in. Writes the suitability
-#' rasters with the final timing weighting to file in the outdir.
+#' @return Flows data frame for water year with suitable habitat area (wua,
+#'   weighted usable area) and hydraulic habitat suitability (hhs) filled in.
+#'   Writes the suitability rasters with the final timing weighting to file in
+#'   the outdir.
 
 hsa_timing <- function(rs_dayinunwgt, mo_start, mo_end, fdf, wy, cres, aconv, ncor, outdir) {
   # Change values to zero that are within the timing window

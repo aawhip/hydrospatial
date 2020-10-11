@@ -1,9 +1,8 @@
 #' Function to summarize area-day from daily results
 #'
-#' This function takes the daily hsa results table from
-#' hydrospatial analysis and summarizes annual on a given
-#' field, returning a list of an annual 'timeseries' and
-#' a 'summary' of that time series
+#' This function takes the daily hsa results table from hydrospatial analysis
+#' and summarizes annual on a given field, returning a list of an annual
+#' 'timeseries' and a 'summary' of that time series
 #'
 #' @param d Data frame in format used for 'hsa' functions
 #' @param sumby Character field name to summarize on
@@ -11,8 +10,7 @@
 #' @importFrom magrittr %>%
 #' @importFrom lazyeval interp
 #' @export
-#' @return List of annual 'timeseries' and 'summary' of that
-#' time series
+#' @return List of annual 'timeseries' and 'summary' of that time series
 
 utils_areaday <- function(d, sumby){
   # For annual timeseries: Group by water year and sum the area across each year
