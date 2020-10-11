@@ -12,12 +12,10 @@ utils_areaday(d, sumby)
 \item{sumby}{Character field name to summarize on}
 }
 \value{
-List of annual 'timeseries' and 'summary' of that
-time series
+List of annual 'timeseries' and 'summary' of that time series
 }
 \description{
-This function takes the daily hsa results table from
-hydrospatial analysis and summarizes annual on a given
-field, returning a list of an annual 'timeseries' and
-a 'summary' of that time series
+This function takes the daily hsa results table from hydrospatial analysis
+and summarizes annual on a given field, returning a list of an annual
+'timeseries' and a 'summary' of that time series
 }

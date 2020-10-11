@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils_hsaflwsevts.R
 \name{utils_hsaflwsevts}
 \alias{utils_hsaflwsevts}
-\title{Function to prepare flood events table for hydrospatial analysis}
+\title{Prepare flood events table for hydrospatial analysis}
 \usage{
 utils_hsaflwsevts(d, sc)
 }
@@ -15,7 +15,6 @@ utils_hsaflwsevts(d, sc)
 Flood events data frame as input for hydrospatial analysis
 }
 \description{
-This function prepares the flood events table that will be used in
-hydrospatial analysis, taking as input the flows table from the
-'utils_hsaflws' function.
+Prepares the flood events table that will be used in hydrospatial analysis,
+taking as input the flows table from the 'utils_hsaflws' function.
 }

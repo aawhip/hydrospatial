@@ -2,13 +2,14 @@
 % Please edit documentation in R/hsa_durationwgt.R
 \name{hsa_durationwgt}
 \alias{hsa_durationwgt}
-\title{Function for hydrospatial application of inundation duration weight}
+\title{Hydrospatial application of inundation duration weight}
 \usage{
 hsa_durationwgt(rs_dayinun, durshrt, durlng, durshrt_wgt, durlng_wgt,
   durtoolng_wgt, wy, ncor, outdir)
 }
 \arguments{
-\item{rs_dayinun}{Raster stack or brick of inundation day as from 'hsa_duration'}
+\item{rs_dayinun}{Raster stack or brick of inundation day as from
+'hsa_duration'}
 
 \item{durshrt}{Threshold number of days for short duration inundation}
 
@@ -30,9 +31,10 @@ hsa_durationwgt(rs_dayinun, durshrt, durlng, durshrt_wgt, durlng_wgt,
 Writes the duration weight rasters to file in the outdir.
 }
 \description{
-This function accepts
+Accepts daily rasters of inundation duration (from \code{hsa_duration}) and
+applies duration weights.
 }
 \details{
-Input rasters are in the  Rasters are written to
-file in a 'rsdur0' directory within 'outdir'.
+Input rasters from 'rsdayinun0' directory. Rasters are written to file in
+  a 'rshab' directory within 'outdir'.
 }

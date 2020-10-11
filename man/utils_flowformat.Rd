@@ -2,21 +2,28 @@
 % Please edit documentation in R/utils_flowformat.R
 \name{utils_flowformat}
 \alias{utils_flowformat}
-\title{Function to format daily flow time series}
+\title{Format daily flow time series}
 \usage{
 utils_flowformat(d)
 }
 \arguments{
-\item{d}{A daily flow time series data frame including a date column
-('dt') in mdy format and flow column ('flw'). There should be no missing
-days.}
+\item{d}{A daily flow time series data frame including a date column ('dt')
+in mdy format and flow column ('flw'). There should be no missing days.}
 }
 \value{
-Formatted daily flows data frame with water year, water year day,
-julian day, cumulative flow, annual flow, 20% quantiles of annual flow,
-high flow of the last seven days, and rising or falling limb assigned
+Formatted daily flows data frame with water year ('wyr'), water year
+  day ('wyrd'), julian day ('jd'), cumulative flow ('cflw'), annual flow
+  volume ('anvol'), quintiles of annual flow ('qntl'), high flow of the last
+  seven days ('hflw'), and rising or falling limb assigned ('limb')
 }
 \description{
-This function accepts a daily flow time series and returns a formatted
-daily flow time series for use in other hydrospatial functions
+Accepts a daily flow time series and returns a formatted daily flow time
+series for use in other hydrospatial functions
+}
+\details{
+Water years are defined as starting on October 1. Cumulative and
+  annual volume are calculated in the units of the input flow (e.g., cubic
+  meters per second becomes cubic meters). Days on the rising limb of the
+  hydrograph are defined as days where flow is greater than or equal to the
+  flow over the last seven days.
 }

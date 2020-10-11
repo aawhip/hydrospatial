@@ -2,7 +2,7 @@
 % Please edit documentation in R/hsa_extent.R
 \name{hsa_extent}
 \alias{hsa_extent}
-\title{Function for hydrospatial analysis of inundation extent with depth and velocity criteria}
+\title{Hydrospatial analysis of inundation extent with depth and velocity criteria}
 \usage{
 hsa_extent(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, fp_a, ncor,
   outdir)
@@ -12,7 +12,8 @@ hsa_extent(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, fp_a, ncor,
 
 \item{rs_v}{Raster stack or brick of velocity}
 
-\item{fdf}{Flows data frame for water year in format of 'utils_hsaflws' function}
+\item{fdf}{Flows data frame for water year in format of 'utils_hsaflws'
+function}
 
 \item{dmin}{Minimum depth threshold for raster calculation}
 
@@ -33,15 +34,15 @@ hsa_extent(rs_d, rs_v, fdf, dmin, dmax, vmax, wy, cres, aconv, fp_a, ncor,
 \item{outdir}{Directory for writing rasters to file}
 }
 \value{
-Flows data frame with inundated area metrics filled in.
-Writes the three sets of rasters to file in the outdir.
+Flows data frame with inundated area metrics filled in. Writes the
+  three sets of rasters to file in the outdir.
 }
 \description{
-This function accepts depth and velocity rasters and associated flows data frame
-for a given water year and calculates three sets of boolean rasters, indicating
-whether cells are inundated, whether they meet the depth thresholds, and whether
-they meet the velocity threshold. The area for each raster is determined and added
-to the flows data frame
+Accepts depth and velocity rasters (from \code{predrast_interp}) and
+associated flows data frame for a given water year and calculates three sets
+of binary rasters, indicating whether cells are inundated, whether they meet
+the depth thresholds, and whether they meet the velocity threshold. The area
+for each raster is determined and added to the flows data frame.
 }
 \details{
 Rasters are written to file in a 'rsi' directory within 'outdir'.
