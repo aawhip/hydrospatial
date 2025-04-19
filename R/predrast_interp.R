@@ -47,6 +47,8 @@ predrast_interp <- function(rs_mod, r_ithr, flws_mod, flws_pred, ponding=FALSE, 
 
   # Step through for each flow in flws_pred
 
+  fun <- function(x) { x[is.na(x)] <- 0; return(x)}
+
   for (i in (1:nrow(flws_pred))) {
 
     flw <- flws_pred$flw[i] # the flow to predict
@@ -55,13 +57,13 @@ predrast_interp <- function(rs_mod, r_ithr, flws_mod, flws_pred, ponding=FALSE, 
     if (ponding==FALSE) {
       if (flw%in%flws_mod$flw) {
         r_p <- rs_mod[[which(flws_mod$flw==flw)]]
-        r_p[is.na(r_p)] <- 0
+        r_p <- calc(r_p, fun) # reset the NA values to 0
       } else {
         inx_bfr <- which(flws_mod$flw==max(flws_mod$flw[(flws_mod$flw<flw)])) # index of the flow before
         inx_aft <- which(flws_mod$flw==min(flws_mod$flw[(flws_mod$flw>flw)])) # index of the flow after
         intrp <- (flw-flws_mod$flw[inx_bfr])/(flws_mod$flw[inx_aft]-flws_mod$flw[inx_bfr]) # the fraction to add for the linear interpolation
         rs <- stack(rs_mod[[inx_bfr]], rs_mod[[inx_aft]])
-        rs[is.na(rs)] <- 0
+        rs <- calc(rs, fun) # reset the NA values to 0
         r_p <- overlay(rs, fun = function(x,y){return(x+(intrp*(y-x)))}) # the interpolation function cell-by-cell for the two prediction rasters
       }
 
@@ -69,13 +71,13 @@ predrast_interp <- function(rs_mod, r_ithr, flws_mod, flws_pred, ponding=FALSE, 
       if (flws_pred$limb[i]=="r") { # If on the rising limb of hydrograph
         if (flw%in%flws_mod$flw[flws_mod$limb=="r"]) {
           r_p <- rs_mod[[which(flws_mod$flw==flw&flws_mod$limb=="r")]]
-          r_p[is.na(r_p)] <- 0
+          r_p <- calc(r_p, fun) # reset the NA values to 0
         } else {
           inx_bfr <- which(flws_mod$flw==max(flws_mod$flw[(flws_mod$flw<flw)])&flws_mod$limb=="r") # index of the flow before
           inx_aft <- which(flws_mod$flw==min(flws_mod$flw[(flws_mod$flw>flw)])&flws_mod$limb=="r") # index of the flow after
           intrp <- (flw-flws_mod$flw[inx_bfr])/(flws_mod$flw[inx_aft]-flws_mod$flw[inx_bfr]) # the fraction to add for the linear interpolation
           rs <- stack(rs_mod[[inx_bfr]],rs_mod[[inx_aft]])
-          rs[is.na(rs)] <- 0
+          rs <- calc(rs, fun) # reset the NA values to 0
           r_p <- overlay(rs,fun=function(x,y){return(x+(intrp*(y-x)))}) # the interpolation function cell-by-cell for the two prediction rasters
         }
       } else if (flws_pred$limb[i]=="f") { # If on the falling limb of the hydrograph
@@ -84,14 +86,14 @@ predrast_interp <- function(rs_mod, r_ithr, flws_mod, flws_pred, ponding=FALSE, 
         if (flw%in%flws_mod$flw[flws_mod$limb=="f"]) {
           r_p <- rs_mod[[which(flws_mod$flw==flw&flws_mod$limb=="f")]]
           r_p <- mask(r_p,ithr_mask) # makes only the non-NA values in the mask show through in the rasterstack
-          r_p[is.na(r_p)] <- 0 # reset the NA values to 0
+          r_p <- calc(r_p, fun) # reset the NA values to 0
         } else {
           inx_bfr <- which(flws_mod$flw==max(flws_mod$flw[(flws_mod$flw<flw)])&flws_mod$limb=="f") # index of the flow before
           inx_aft <- which(flws_mod$flw==min(flws_mod$flw[(flws_mod$flw>flw)])&flws_mod$limb=="f") # index of the flow after
           intrp <- (flw-flws_mod$flw[inx_bfr])/(flws_mod$flw[inx_aft]-flws_mod$flw[inx_bfr]) # the fraction to add for the linear interpolation
           rs <- stack(rs_mod[[inx_bfr]],rs_mod[[inx_aft]])
           rs <- mask(rs,ithr_mask) # makes only the non-NA values in the mask show through in the rasterstack
-          rs[is.na(rs)] <- 0 # reset the NA values to 0
+          rs <- calc(rs, fun) # reset the NA values to 0
           r_p <- overlay(rs,fun=function(x,y){return(x+(intrp*(y-x)))}) # the interpolation function cell-by-cell for the two prediction rasters
         }
       }
